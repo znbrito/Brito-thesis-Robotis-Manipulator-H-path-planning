@@ -1,0 +1,8 @@
+prefix=/usr/local
+
+Name: manipulator_h_path_planning
+Description: Description of manipulator_h_path_planning
+Version: 0.0.0
+Cflags: -I/usr/include/eigen3
+Libs: -L/usr/local/lib 
+Requires: moveit_core moveit_ros_planning_interface interactive_markers

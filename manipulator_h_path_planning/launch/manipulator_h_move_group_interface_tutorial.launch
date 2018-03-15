@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+
+  <node name="manipulator_h_move_group_interface_tutorial" pkg="manipulator_h_path_planning" type="manipulator_h_move_group_interface_tutorial" respawn="false" output="screen"/>
+
+</launch>

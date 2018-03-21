@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<launch>
+  <include file="$(find manipulator_h_moveit_config)/launch/planning_context.launch">
+    <arg name="load_robot_description" value="true"/>
+  </include>
+
+  <node name="manipulator_h_kinematic_model_tutorial"
+        pkg="manipulaotr_h_path_planning"
+        type="manipulator_h_kinematic_model_tutorial"
+        respawn="false" output="screen">
+    <rosparam command="load" file="$(find manipulator_h_moveit_config)/config/kinematics.yaml"/>
+  </node>
+</launch>

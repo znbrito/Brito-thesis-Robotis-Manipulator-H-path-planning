@@ -2,6 +2,24 @@
 Changelog for package brito_thesis
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.2.3 (2017-03-21 @ 19:35 PM)
+-----------
+* Added the kinematic model tutorial from MoveIt!, addapted to the Robotis Manipulator-H
+
+* In order to run the simulation, run the following in the terminal:
+ - FIRST WINDOW: roslaunch manipulator_h_path_planning kinematic_model_tutorial.launch 
+
+
+0.2.2 (2017-03-21 @ 18:46 PM)
+-----------
+* Programm is now fully functional. Removed the attach and dettach functions. Inserted 2 services, one to add and another to remove gazebo objects, so the object can be visualized both in Gazebo and RViz
+
+* In order to run the simulation, run the following in the terminal:
+ - FIRST WINDOW: roslaunch manipulator_h_gazebo manipulator_h_gazebo.launch
+ - SECOND WINDOW: roslaunch manipulator_h_moveit_config manipulator_h_planning_execution.launch 
+ - THIRD WINDOW: roslaunch manipulator_h_path_planning manipulator_h_move_group_interface_tutorial.launch
+
+
 0.2.1 (2017-03-21 @ 11:30 AM)
 -----------
 * Modified the configurations in "manipulator_h_moveit_config" package because the planned paths programmed were being executed in the Gazebo simulator but the joint values weren't being updated. Problem is now solved. Programmed examples for goal pose planning, joint state goal planning and path planning under path constraints is now fully operable. Note that in RViz, the goal state is only updated when the path is planned and executed in the RViz GUI.

@@ -41,3 +41,6 @@ link_directories(${catkin_LIBRARY_DIRS})
 
 add_executable(manipulator_h_move_group_interface_tutorial src/manipulator_h_move_group_interface_tutorial.cpp)
 target_link_libraries(manipulator_h_move_group_interface_tutorial ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+
+add_executable(manipulator_h_kinematic_model_tutorial src/manipulator_h_kinematic_model_tutorial.cpp)
+target_link_libraries(manipulator_h_kinematic_model_tutorial ${catkin_LIBRARIES} ${Boost_LIBRARIES})

@@ -40,8 +40,7 @@ int main(int argc, char **argv)
   moveit::planning_interface::PlanningSceneInterface planning_scene_interface;
 
   // Raw pointers are frequently used to refer to the planning group for improved performance
-  const robot_state::JointModelGroup *joint_model_group =
-    move_group.getCurrentState()->getJointModelGroup(PLANNING_GROUP);
+  const robot_state::JointModelGroup *joint_model_group = move_group.getCurrentState()->getJointModelGroup(PLANNING_GROUP);
 
 
 
@@ -126,8 +125,6 @@ int main(int argc, char **argv)
   visual_tools.publishText(text_pose, "Pose goal planning", rvt::WHITE, rvt::XLARGE);
   visual_tools.publishTrajectoryLine(my_plan.trajectory_, joint_model_group->getLinkModel("end_link"), joint_model_group, rvt::LIME_GREEN);
   visual_tools.trigger();
-  // Wait for the user click on the RVizVisualToolsGui or N if he has the 'Key Tool' selected. Also print a specific message in the terminal
-  visual_tools.prompt("Click 'Next' in the RVizVisualToolsGui or N if you have the 'Key Tool' selected");
 
 
 
@@ -142,8 +139,11 @@ int main(int argc, char **argv)
   // a blocking function and requires a controller to be active
   // and report success on execution of a trajectory.
 
-  // Uncomment below line when working with a real robot
-  // move_group.move()
+  // Uncomment below line when working with a real robot (or Gazebo simulation)
+  move_group.move();
+
+  // Wait for the user click on the RVizVisualToolsGui or N if he has the 'Key Tool' selected. Also print a specific message in the terminal
+  visual_tools.prompt("Click 'Next' in the RVizVisualToolsGui or N if you have the 'Key Tool' selected");
 
 
 
@@ -152,7 +152,6 @@ int main(int argc, char **argv)
   //
   // Let's set a joint space goal and move towards it.  This will replace the
   // pose target we set above.
-  //
   // To start, we'll create an pointer that references the current robot's state.
   // RobotState is the object that contains all the current position/velocity/acceleration data.
   moveit::core::RobotStatePtr current_state = move_group.getCurrentState();
@@ -160,6 +159,7 @@ int main(int argc, char **argv)
   // Next get the current set of joint values for the group.
   std::vector<double> joint_group_positions;
   current_state->copyJointGroupPositions(joint_model_group, joint_group_positions);
+
 
   // Now, let's modify one of the joints, plan to the new joint space goal and visualize the plan.
   joint_group_positions[0] = -1.0;  // radians
@@ -173,6 +173,9 @@ int main(int argc, char **argv)
   visual_tools.publishText(text_pose, "Joint Space goal planning", rvt::WHITE, rvt::XLARGE);
   visual_tools.publishTrajectoryLine(my_plan.trajectory_, joint_model_group->getLinkModel("end_link"), joint_model_group, rvt::GREEN);
   visual_tools.trigger();
+
+  // Actually move the robot
+  move_group.move();
   // Wait for the user click on the RVizVisualToolsGui or N if he has the 'Key Tool' selected. Also print a specific message in the terminal
   visual_tools.prompt("Click 'Next' in the RVizVisualToolsGui or N if you have the 'Key Tool' selected");
 
@@ -181,6 +184,38 @@ int main(int argc, char **argv)
   // Planning with Path Constraints
   // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   //
+  // First of all, the path planned  under constraints only works if, for example, the
+  // start state satisfies the path constraints. If, for example, the path constraint
+  // is to follow a path while mantainging a desired end effector orientation (for
+  // example the initial one), the start pose has to satisfie this orientation. So,
+  // since the last movement didn't satisfy this orientation constraint, we have to
+  // first plan to the same goal postion but now with the correct orientation, so:
+
+  // Set the desired pose as the current pose
+  geometry_msgs::Pose start_pose2 = move_group.getCurrentPose().pose;
+
+  // Overwrite the wanted orientation
+  aux.setW(1);
+  aux.setX(0);
+  aux.setY(0);
+  aux.setZ(0);
+  aux.normalize();
+
+  start_pose2.orientation.w = aux.getW();
+  start_pose2.orientation.x = aux.getX();
+  start_pose2.orientation.y = aux.getY();
+  start_pose2.orientation.z = aux.getZ();
+
+  start_pose2.position.x = 0.2;
+  start_pose2.position.y = -0.1;
+  start_pose2.position.z = 0.2;
+
+  move_group.setPoseTarget(start_pose2);
+
+  // Move the robot so that it now satisfies the orientation constraint before
+  // we start to plan under path constraints
+  move_group.move();
+
   // Path constraints can easily be specified for a link on the robot.
   // Let's specify a path constraint and a pose goal for our group.
   // First define the path constraint.
@@ -210,31 +245,6 @@ int main(int argc, char **argv)
   test_constraints.orientation_constraints.push_back(ocm);
   move_group.setPathConstraints(test_constraints);
 
-  // We will reuse the old goal that we had and plan to it.
-  // Note that this will only work if the current state already
-  // satisfies the path constraints. So, we need to set the start
-  // state to a new pose.
-  robot_state::RobotState start_state(*move_group.getCurrentState());
-  geometry_msgs::Pose start_pose2;
-
-  // Re-use the predifined quaternion
-  aux.setW(1);
-  aux.setX(0);
-  aux.setY(0);
-  aux.setZ(0);
-  aux.normalize();
-
-  start_pose2.orientation.w = aux.getW();
-  start_pose2.orientation.x = aux.getX();
-  start_pose2.orientation.y = aux.getY();
-  start_pose2.orientation.z = aux.getZ();
-
-  start_pose2.position.x = 0.2;
-  start_pose2.position.y = -0.4;
-  start_pose2.position.z = 0.2;
-  start_state.setFromIK(joint_model_group, start_pose2);
-  move_group.setStartState(start_state);
-
   // Now we will plan to the earlier pose target from the new
   // start state that we have just created.
   move_group.setPoseTarget(target_pose1);
@@ -253,6 +263,7 @@ int main(int argc, char **argv)
   visual_tools.publishText(text_pose, "Constrained goal planning", rvt::WHITE, rvt::XLARGE);
   visual_tools.publishTrajectoryLine(my_plan.trajectory_, joint_model_group->getLinkModel("end_link"), joint_model_group, rvt::BLUE);
   visual_tools.trigger();
+  move_group.move();
   // Wait for the user click on the RVizVisualToolsGui or N if he has the 'Key Tool' selected. Also print a specific message in the terminal
   visual_tools.prompt("Click 'Next' in the RVizVisualToolsGui or N if you have the 'Key Tool' selected");
 
@@ -264,6 +275,13 @@ int main(int argc, char **argv)
   // Cartesian Paths
   // ^^^^^^^^^^^^^^^
   //
+  // First of all, let's go back to the position where the cartesian path is going to start
+  /*
+  start_pose2.position.x += 0.2;
+
+  move_group.setPoseTarget(start_pose2);
+  move_group.move();
+
   // You can plan a cartesian path directly by specifying a list of waypoints
   // for the end-effector to go through. Note that we are starting
   // from the new start state above.  The initial pose (start state) does not
@@ -294,7 +312,7 @@ int main(int argc, char **argv)
   // Warning - disabling the jump threshold while operating real hardware can cause                              // WATCH OUT HERE WHEN USING A REAL ROBOT
   // large unpredictable motions of redundant joints and could be a safety issue
   moveit_msgs::RobotTrajectory trajectory;
-  const double jump_threshold = 0.0;
+  const double jump_threshold = 1.0; // Maximum distance allowed between waypoints
   const double eef_step = 0.01;
   double fraction = move_group.computeCartesianPath(waypoints, eef_step, jump_threshold, trajectory);
   ROS_INFO_NAMED("tutorial", "Visualizing plan 4 (cartesian path planning) (%.2f%% acheived)", fraction * 100.0);
@@ -307,8 +325,17 @@ int main(int argc, char **argv)
     visual_tools.publishAxisLabeled(waypoints[i], "pt" + std::to_string(i), rvt::SMALL);
   }
   visual_tools.trigger();
+  move_group.move();
   // Wait for the user click on the RVizVisualToolsGui or N if he has the 'Key Tool' selected. Also print a specific message in the terminal
   visual_tools.prompt("Click 'Next' in the RVizVisualToolsGui or N if you have the 'Key Tool' selected");
+  */
+
+  /*my_plan.trajectory_ = trajectory;
+  success = (move_group.plan(my_plan) == moveit::planning_interface::MoveItErrorCode::SUCCESS);
+  ROS_INFO_NAMED("tutorial", "Visualizing plan 4 (cartesian path planning)%s(%.2f%% acheived)", success ? " " : " FAILED ", fraction * 100.0);
+  move_group.execute(my_plan);
+  // Wait for the user click on the RVizVisualToolsGui or N if he has the 'Key Tool' selected. Also print a specific message in the terminal
+  visual_tools.prompt("Click 'Next' in the RVizVisualToolsGui or N if you have the 'Key Tool' selected");*/
 
 
 
@@ -464,7 +491,16 @@ int main(int argc, char **argv)
   visual_tools.publishText(text_pose, "Goal pose planning again", rvt::WHITE, rvt::XLARGE);
   visual_tools.publishTrajectoryLine(my_plan.trajectory_, joint_model_group->getLinkModel("end_link"), joint_model_group, rvt::MAGENTA);
   visual_tools.trigger();
+  // Wait for the user click on the RVizVisualToolsGui or N if he has the 'Key Tool' selected. Also print a specific message in the terminal
+  visual_tools.prompt("Click 'Next' in the RVizVisualToolsGui or N if you have the 'Key Tool' selected");
 
+  // Planing to a Robot Pose postion (default position defined in the MoveIt! Setup Assistant)
+  //
+  // Planning to a previously defined position can be done by invoking the function
+  // "setNamedTraget" in a "MoveGroupInterface" object
+
+  move_group.setNamedTarget("home_pose");
+  move_group.move();
 
   ros::shutdown();
   return 0;

@@ -12,7 +12,7 @@
   <!-- Publish joint states in the "/robotis_manipulator_h/joint_states" topic, since we now have a real robot simulated in Gazebo -->
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
     <param name="/use_gui" value="false"/>
-    <rosparam param="/source_list">/robotis_manipulator_h/joint_states</rosparam>
+    <rosparam param="/source_list">[/robotis_manipulator_h/joint_states]</rosparam>
   </node>
 
   <!-- Given the published joint states, publish tf for the robot links -->

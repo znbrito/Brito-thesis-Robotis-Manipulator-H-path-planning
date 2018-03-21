@@ -13,6 +13,13 @@
 
 #include <tf/tf.h>
 
+#include <gazebo_msgs/SpawnModel.h>
+#include <gazebo_msgs/DeleteModel.h>
+
+#include <fstream>
+#include <string>
+
+
 
 int main(int argc, char **argv)
 {
@@ -42,6 +49,11 @@ int main(int argc, char **argv)
   // Raw pointers are frequently used to refer to the planning group for improved performance
   const robot_state::JointModelGroup *joint_model_group = move_group.getCurrentState()->getJointModelGroup(PLANNING_GROUP);
 
+  // Create the client that will call the gazebo service to spawn objects
+  ros::ServiceClient gazebo_spawn_model = node_handle.serviceClient<gazebo_msgs::SpawnModel>("/gazebo/spawn_urdf_model");
+
+  // Create another client that will call the gazebo service to delete this object
+  ros::ServiceClient gazebo_delete_model = node_handle.serviceClient<gazebo_msgs::DeleteModel>("/gazebo/delete_model");
 
 
   // Visualization
@@ -77,7 +89,8 @@ int main(int argc, char **argv)
   // We can also print the name of the end-effector link for this group
   ROS_INFO_NAMED("tutorial", "End effector link: %s", move_group.getEndEffectorLink().c_str());
 
-
+  // Save the initial pose of the robot
+  geometry_msgs::Pose initial_pose = move_group.getCurrentPose().pose;
 
   // Planning to a Pose goal
   // ^^^^^^^^^^^^^^^^^^^^^^^
@@ -175,7 +188,7 @@ int main(int argc, char **argv)
   visual_tools.trigger();
 
   // Actually move the robot
-  move_group.move();
+  move_group.execute(my_plan);
   // Wait for the user click on the RVizVisualToolsGui or N if he has the 'Key Tool' selected. Also print a specific message in the terminal
   visual_tools.prompt("Click 'Next' in the RVizVisualToolsGui or N if you have the 'Key Tool' selected");
 
@@ -263,7 +276,7 @@ int main(int argc, char **argv)
   visual_tools.publishText(text_pose, "Constrained goal planning", rvt::WHITE, rvt::XLARGE);
   visual_tools.publishTrajectoryLine(my_plan.trajectory_, joint_model_group->getLinkModel("end_link"), joint_model_group, rvt::BLUE);
   visual_tools.trigger();
-  move_group.move();
+  move_group.execute(my_plan);
   // Wait for the user click on the RVizVisualToolsGui or N if he has the 'Key Tool' selected. Also print a specific message in the terminal
   visual_tools.prompt("Click 'Next' in the RVizVisualToolsGui or N if you have the 'Key Tool' selected");
 
@@ -342,6 +355,11 @@ int main(int argc, char **argv)
   // Adding/Removing Objects and Attaching/Detaching Objects
   // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   //
+  // First let's move the robot to the initial pose of the simulation
+  move_group.setPoseTarget(initial_pose);
+  move_group.move();
+
+
   // Define a collision object ROS message.
   moveit_msgs::CollisionObject collision_object;
   collision_object.header.frame_id = move_group.getPlanningFrame();
@@ -387,17 +405,54 @@ int main(int argc, char **argv)
   ROS_INFO_NAMED("tutorial", "Add an object into the world");
   planning_scene_interface.addCollisionObjects(collision_objects);
 
-  // Show text in Rviz of status
-  visual_tools.publishText(text_pose, "Add object", rvt::WHITE, rvt::XLARGE);
-  visual_tools.trigger();
-
   // Sleep to allow MoveGroup to recieve and process the collision object message
   ros::Duration(1.0).sleep();
 
 
 
-  // Now when we plan a trajectory it will avoid the obstacle
-  move_group.setStartState(*move_group.getCurrentState());
+  // Now let's add the object to Gazebo
+  gazebo_msgs::SpawnModel object;
+
+  // Read the URDF file
+  std::ifstream ifss("/home/josebrito/catkin_ws/src/brito_thesis/gazebo_objects/object.urdf");
+  std::string line, tudo;
+  if (ifss.is_open()) {
+    // While loop to add the URDF file code into a string variable
+    while ( getline (ifss,line) ) {
+        tudo += line;
+    }
+    ifss.close();
+    object.request.model_xml = tudo;
+  }
+  else {
+    ROS_INFO_NAMED("tutorial", "Couldn't open the URDF file!");
+  }
+
+  // Set the names of the object and the reference frame
+  std::string object_name = "my_box";
+  object.request.model_name = object_name;
+  object.request.reference_frame = "world";
+
+  // Call the service to spawn the object
+  if (gazebo_spawn_model.call(object))
+  {
+    ROS_INFO("Success, object created");
+  }
+  else
+  {
+    ROS_ERROR("Failed to call service");
+  }
+
+  // Instead of doing the above steps, you can only launhc the following on a new terminal
+  // "rosrun gazebo_ros spawn_model -file /home/josebrito/catkin_ws/src/brito_thesis/gazebo_objects/object.urdf -urdf -model my_box"
+
+  // Show text in Rviz of status
+  visual_tools.publishText(text_pose, "Add object", rvt::WHITE, rvt::XLARGE);
+  visual_tools.trigger();
+
+
+
+  // Now when we plan a trajectory that it will avoid the obstacle
   move_group.setPoseTarget(target_pose1);
 
   success = (move_group.plan(my_plan) == moveit::planning_interface::MoveItErrorCode::SUCCESS);
@@ -408,64 +463,15 @@ int main(int argc, char **argv)
   visual_tools.publishText(text_pose, "Obstacle goal planning", rvt::WHITE, rvt::XLARGE);
   visual_tools.publishTrajectoryLine(my_plan.trajectory_, joint_model_group->getLinkModel("end_link"), joint_model_group, rvt::CYAN);
   visual_tools.trigger();
+  move_group.execute(my_plan);
   // Wait for the user click on the RVizVisualToolsGui or N if he has the 'Key Tool' selected. Also print a specific message in the terminal
   visual_tools.prompt("Click 'Next' in the RVizVisualToolsGui or N if you have the 'Key Tool' selected");
 
 
 
-  // Now, let's attach the collision object to the robot.
-  ROS_INFO_NAMED("tutorial", "Attach the object to the robot");
-  move_group.attachObject(collision_object.id);
-
-  // Show text in Rviz of status
-  visual_tools.publishText(text_pose, "Object attached to robot", rvt::WHITE, rvt::XLARGE);
-  visual_tools.trigger();
-
-  // Sleep to allow MoveGroup to recieve and process the attached collision object message
-  ros::Duration(1.0).sleep();
-
-
-
-  // Plan to the same pose but now with the object attached
-  success = (move_group.plan(my_plan) == moveit::planning_interface::MoveItErrorCode::SUCCESS);
-  ROS_INFO_NAMED("tutorial", "Visualizing plan 6 (pose goal planning with cuboid attached) %s", success ? "" : "FAILED");
-
-  // Visualize the plan in Rviz
-  visual_tools.deleteAllMarkers();
-  visual_tools.publishText(text_pose, "Attached obstacle goal planning", rvt::WHITE, rvt::XLARGE);
-  visual_tools.publishTrajectoryLine(my_plan.trajectory_, joint_model_group->getLinkModel("end_link"), joint_model_group, rvt::ORANGE);
-  visual_tools.trigger();
-  // Wait for the user click on the RVizVisualToolsGui or N if he has the 'Key Tool' selected. Also print a specific message in the terminal
-  visual_tools.prompt("Click 'Next' in the RVizVisualToolsGui or N if you have the 'Key Tool' selected");
-
-
-
-  // Now, let's detach the collision object from the robot.
-  ROS_INFO_NAMED("tutorial", "Detach the object from the robot");
-  move_group.detachObject(collision_object.id);
-
-  // Show text in Rviz of status
-  visual_tools.publishText(text_pose, "Object dettached from robot", rvt::WHITE, rvt::XLARGE);
-  visual_tools.trigger();
-
-  // Sleep to allow MoveGroup to recieve and process the detach collision object message
-  ros::Duration(1.0).sleep();
-
-
-
-  // Plan to the same pose but now with the object attached
-  success = (move_group.plan(my_plan) == moveit::planning_interface::MoveItErrorCode::SUCCESS);
-  ROS_INFO_NAMED("tutorial", "Visualizing plan 7 (pose goal planning again with cuboid) %s", success ? "" : "FAILED");
-
-  // Visualize the plan in Rviz
-  visual_tools.deleteAllMarkers();
-  visual_tools.publishText(text_pose, "Obstacle goal planning again", rvt::WHITE, rvt::XLARGE);
-  visual_tools.publishTrajectoryLine(my_plan.trajectory_, joint_model_group->getLinkModel("end_link"), joint_model_group, rvt::YELLOW);
-  visual_tools.trigger();
-  // Wait for the user click on the RVizVisualToolsGui or N if he has the 'Key Tool' selected. Also print a specific message in the terminal
-  visual_tools.prompt("Click 'Next' in the RVizVisualToolsGui or N if you have the 'Key Tool' selected");
-
-
+  // Once again, let's move the robot to the initial pose of the simulation
+  move_group.setPoseTarget(initial_pose);
+  move_group.move();
 
   // Now, let's remove the collision object from the world.
   ROS_INFO_NAMED("tutorial", "Remove the object from the world");
@@ -482,25 +488,54 @@ int main(int argc, char **argv)
 
 
 
+  // Remove the object from Gazebo
+  gazebo_msgs::DeleteModel model;
+  model.request.model_name = object_name;
+
+  // Call the service to delete the object
+  if (gazebo_delete_model.call(model))
+  {
+    ROS_INFO("Success, object deleted");
+  }
+  else
+  {
+    ROS_ERROR("Failed to call service");
+  }
+
+
+
   // Plan to the same pose but now with the object attached
+  move_group.setPoseTarget(target_pose1);
   success = (move_group.plan(my_plan) == moveit::planning_interface::MoveItErrorCode::SUCCESS);
-  ROS_INFO_NAMED("tutorial", "Visualizing plan 8 (pose goal planning again) %s", success ? "" : "FAILED");
+  ROS_INFO_NAMED("tutorial", "Visualizing plan 6 (pose goal planning again) %s", success ? "" : "FAILED");
 
   // Visualize the plan in Rviz
   visual_tools.deleteAllMarkers();
   visual_tools.publishText(text_pose, "Goal pose planning again", rvt::WHITE, rvt::XLARGE);
   visual_tools.publishTrajectoryLine(my_plan.trajectory_, joint_model_group->getLinkModel("end_link"), joint_model_group, rvt::MAGENTA);
   visual_tools.trigger();
+  move_group.execute(my_plan);
   // Wait for the user click on the RVizVisualToolsGui or N if he has the 'Key Tool' selected. Also print a specific message in the terminal
   visual_tools.prompt("Click 'Next' in the RVizVisualToolsGui or N if you have the 'Key Tool' selected");
+
+
 
   // Planing to a Robot Pose postion (default position defined in the MoveIt! Setup Assistant)
   //
   // Planning to a previously defined position can be done by invoking the function
   // "setNamedTraget" in a "MoveGroupInterface" object
-
   move_group.setNamedTarget("home_pose");
-  move_group.move();
+  success = (move_group.plan(my_plan) == moveit::planning_interface::MoveItErrorCode::SUCCESS);
+  ROS_INFO_NAMED("tutorial", "Visualizing plan 7 (named target goal planning) %s", success ? "" : "FAILED");
+
+  // Visualize the plan in Rviz
+  visual_tools.deleteAllMarkers();
+  visual_tools.publishText(text_pose, "Goal pose planning again", rvt::WHITE, rvt::XLARGE);
+  visual_tools.publishTrajectoryLine(my_plan.trajectory_, joint_model_group->getLinkModel("end_link"), joint_model_group, rvt::PURPLE);
+  visual_tools.trigger();
+  move_group.execute(my_plan);
+  // Wait for the user click on the RVizVisualToolsGui or N if he has the 'Key Tool' selected. Also print a specific message in the terminal
+  visual_tools.prompt("Click 'Next' in the RVizVisualToolsGui or N if you have the 'Key Tool' selected");
 
   ros::shutdown();
   return 0;

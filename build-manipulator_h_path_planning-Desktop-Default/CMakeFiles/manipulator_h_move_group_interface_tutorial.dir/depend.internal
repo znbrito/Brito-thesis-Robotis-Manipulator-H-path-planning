@@ -13,6 +13,12 @@ CMakeFiles/manipulator_h_move_group_interface_tutorial.dir/src/manipulator_h_mov
  /opt/ros/kinetic/include/eigen_stl_containers/eigen_stl_containers.h
  /opt/ros/kinetic/include/eigen_stl_containers/eigen_stl_map_container.h
  /opt/ros/kinetic/include/eigen_stl_containers/eigen_stl_vector_container.h
+ /opt/ros/kinetic/include/gazebo_msgs/DeleteModel.h
+ /opt/ros/kinetic/include/gazebo_msgs/DeleteModelRequest.h
+ /opt/ros/kinetic/include/gazebo_msgs/DeleteModelResponse.h
+ /opt/ros/kinetic/include/gazebo_msgs/SpawnModel.h
+ /opt/ros/kinetic/include/gazebo_msgs/SpawnModelRequest.h
+ /opt/ros/kinetic/include/gazebo_msgs/SpawnModelResponse.h
  /opt/ros/kinetic/include/geometric_shapes/bodies.h
  /opt/ros/kinetic/include/geometric_shapes/shapes.h
  /opt/ros/kinetic/include/geometry_msgs/Point.h

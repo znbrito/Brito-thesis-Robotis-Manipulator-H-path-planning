@@ -68,6 +68,17 @@ install/fast: preinstall/fast
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
+
 # Special rule for the target list_install_components
 list_install_components:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
@@ -99,17 +110,6 @@ test:
 test/fast: test
 
 .PHONY : test/fast
-
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
 
 # Special rule for the target install/strip
 install/strip: preinstall
@@ -1050,6 +1050,19 @@ tf_generate_messages_py/fast:
 .PHONY : tf_generate_messages_py/fast
 
 #=============================================================================
+# Target rules for targets named manipulator_h_planning_scene_ros_api_tutorial
+
+# Build rule for target.
+manipulator_h_planning_scene_ros_api_tutorial: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 manipulator_h_planning_scene_ros_api_tutorial
+.PHONY : manipulator_h_planning_scene_ros_api_tutorial
+
+# fast build rule for target.
+manipulator_h_planning_scene_ros_api_tutorial/fast:
+	$(MAKE) -f CMakeFiles/manipulator_h_planning_scene_ros_api_tutorial.dir/build.make CMakeFiles/manipulator_h_planning_scene_ros_api_tutorial.dir/build
+.PHONY : manipulator_h_planning_scene_ros_api_tutorial/fast
+
+#=============================================================================
 # Target rules for targets named octomap_msgs_generate_messages_cpp
 
 # Build rule for target.
@@ -1454,6 +1467,33 @@ src/manipulator_h_move_group_interface_tutorial.cpp.s:
 	$(MAKE) -f CMakeFiles/manipulator_h_move_group_interface_tutorial.dir/build.make CMakeFiles/manipulator_h_move_group_interface_tutorial.dir/src/manipulator_h_move_group_interface_tutorial.cpp.s
 .PHONY : src/manipulator_h_move_group_interface_tutorial.cpp.s
 
+src/manipulator_h_planning_scene_ros_api_tutorial.o: src/manipulator_h_planning_scene_ros_api_tutorial.cpp.o
+
+.PHONY : src/manipulator_h_planning_scene_ros_api_tutorial.o
+
+# target to build an object file
+src/manipulator_h_planning_scene_ros_api_tutorial.cpp.o:
+	$(MAKE) -f CMakeFiles/manipulator_h_planning_scene_ros_api_tutorial.dir/build.make CMakeFiles/manipulator_h_planning_scene_ros_api_tutorial.dir/src/manipulator_h_planning_scene_ros_api_tutorial.cpp.o
+.PHONY : src/manipulator_h_planning_scene_ros_api_tutorial.cpp.o
+
+src/manipulator_h_planning_scene_ros_api_tutorial.i: src/manipulator_h_planning_scene_ros_api_tutorial.cpp.i
+
+.PHONY : src/manipulator_h_planning_scene_ros_api_tutorial.i
+
+# target to preprocess a source file
+src/manipulator_h_planning_scene_ros_api_tutorial.cpp.i:
+	$(MAKE) -f CMakeFiles/manipulator_h_planning_scene_ros_api_tutorial.dir/build.make CMakeFiles/manipulator_h_planning_scene_ros_api_tutorial.dir/src/manipulator_h_planning_scene_ros_api_tutorial.cpp.i
+.PHONY : src/manipulator_h_planning_scene_ros_api_tutorial.cpp.i
+
+src/manipulator_h_planning_scene_ros_api_tutorial.s: src/manipulator_h_planning_scene_ros_api_tutorial.cpp.s
+
+.PHONY : src/manipulator_h_planning_scene_ros_api_tutorial.s
+
+# target to generate assembly for a file
+src/manipulator_h_planning_scene_ros_api_tutorial.cpp.s:
+	$(MAKE) -f CMakeFiles/manipulator_h_planning_scene_ros_api_tutorial.dir/build.make CMakeFiles/manipulator_h_planning_scene_ros_api_tutorial.dir/src/manipulator_h_planning_scene_ros_api_tutorial.cpp.s
+.PHONY : src/manipulator_h_planning_scene_ros_api_tutorial.cpp.s
+
 src/manipulator_h_planning_scene_tutorial.o: src/manipulator_h_planning_scene_tutorial.cpp.o
 
 .PHONY : src/manipulator_h_planning_scene_tutorial.o
@@ -1488,6 +1528,7 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... install"
+	@echo "... rebuild_cache"
 	@echo "... _catkin_empty_exported_target"
 	@echo "... visualization_msgs_generate_messages_eus"
 	@echo "... actionlib_msgs_generate_messages_nodejs"
@@ -1558,6 +1599,7 @@ help:
 	@echo "... manipulator_h_planning_scene_tutorial"
 	@echo "... object_recognition_msgs_generate_messages_nodejs"
 	@echo "... tf_generate_messages_py"
+	@echo "... manipulator_h_planning_scene_ros_api_tutorial"
 	@echo "... octomap_msgs_generate_messages_cpp"
 	@echo "... octomap_msgs_generate_messages_lisp"
 	@echo "... octomap_msgs_generate_messages_py"
@@ -1573,7 +1615,6 @@ help:
 	@echo "... roscpp_generate_messages_lisp"
 	@echo "... graph_msgs_generate_messages_py"
 	@echo "... tf_generate_messages_eus"
-	@echo "... rebuild_cache"
 	@echo "... std_msgs_generate_messages_eus"
 	@echo "... actionlib_generate_messages_eus"
 	@echo "... tf2_msgs_generate_messages_cpp"
@@ -1595,6 +1636,9 @@ help:
 	@echo "... src/manipulator_h_move_group_interface_tutorial.o"
 	@echo "... src/manipulator_h_move_group_interface_tutorial.i"
 	@echo "... src/manipulator_h_move_group_interface_tutorial.s"
+	@echo "... src/manipulator_h_planning_scene_ros_api_tutorial.o"
+	@echo "... src/manipulator_h_planning_scene_ros_api_tutorial.i"
+	@echo "... src/manipulator_h_planning_scene_ros_api_tutorial.s"
 	@echo "... src/manipulator_h_planning_scene_tutorial.o"
 	@echo "... src/manipulator_h_planning_scene_tutorial.i"
 	@echo "... src/manipulator_h_planning_scene_tutorial.s"

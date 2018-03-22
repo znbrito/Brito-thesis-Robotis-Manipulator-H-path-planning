@@ -2,7 +2,15 @@
 Changelog for package brito_thesis
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-0.2.3 (2017-03-22 @ 10:38 AM)
+0.2.5 (2017-03-22 @ 11:24 AM)
+-----------
+* Added ROS API planning scene from MoveIt!, addapted to the Robotis Manipulator-H
+
+* In order to run the simulation, run the following in the terminal:
+ - FIRST WINDOW: roslaunch manipulator_h_path_planning manipulator_h_planning_scene_ros_api_tutorial.launch
+
+
+0.2.4 (2017-03-22 @ 10:38 AM)
 -----------
 * Added planning scene tutorial from MoveIt!, addapted to the Robotis Manipulator-H
 

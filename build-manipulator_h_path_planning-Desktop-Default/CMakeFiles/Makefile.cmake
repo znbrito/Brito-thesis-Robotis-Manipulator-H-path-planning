@@ -359,6 +359,7 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/manipulator_h_planning_scene_tutorial.dir/DependInfo.cmake"
   "CMakeFiles/object_recognition_msgs_generate_messages_nodejs.dir/DependInfo.cmake"
   "CMakeFiles/tf_generate_messages_py.dir/DependInfo.cmake"
+  "CMakeFiles/manipulator_h_planning_scene_ros_api_tutorial.dir/DependInfo.cmake"
   "CMakeFiles/octomap_msgs_generate_messages_cpp.dir/DependInfo.cmake"
   "CMakeFiles/octomap_msgs_generate_messages_lisp.dir/DependInfo.cmake"
   "CMakeFiles/octomap_msgs_generate_messages_py.dir/DependInfo.cmake"

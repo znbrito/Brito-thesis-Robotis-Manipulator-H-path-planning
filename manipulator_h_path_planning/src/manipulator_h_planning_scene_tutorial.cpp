@@ -25,7 +25,7 @@ bool userCallback(const robot_state::RobotState& kinematic_state, bool verbose) 
 
 int main(int argc, char** argv)
 {
-  ros::init(argc, argv, "main_group_kinematics");
+  ros::init(argc, argv, "manipulator_h_planning_scene_tutorial");
   ros::AsyncSpinner spinner(1);
   spinner.start();
 

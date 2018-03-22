@@ -2,6 +2,14 @@
 Changelog for package brito_thesis
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.2.7 (2017-03-22 @ 2:55 PM)
+-----------
+* Added motion pipeline tutorial from MoveIt!, addapted to the Robotis Manipulator-H
+
+* In order to run the simulation, run the following in the terminal:
+ - FIRST WINDOW: roslaunch manipulator_h_path_planning manipulator_h_planning_pipeline_tutorial.launch
+
+
 0.2.6 (2017-03-22 @ 2:14 PM)
 -----------
 * Added motion planners tutorial from MoveIt!, addapted to the Robotis Manipulator-H

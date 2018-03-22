@@ -2,12 +2,20 @@
 Changelog for package brito_thesis
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.2.3 (2017-03-22 @ 10:38 AM)
+-----------
+* Added planning scene tutorial from MoveIt!, addapted to the Robotis Manipulator-H
+
+* In order to run the simulation, run the following in the terminal:
+ - FIRST WINDOW: roslaunch manipulator_h_path_planning manipulator_h_planning_scene_tutorial.launch 
+
+
 0.2.3 (2017-03-21 @ 19:35 PM)
 -----------
 * Added the kinematic model tutorial from MoveIt!, addapted to the Robotis Manipulator-H
 
 * In order to run the simulation, run the following in the terminal:
- - FIRST WINDOW: roslaunch manipulator_h_path_planning kinematic_model_tutorial.launch 
+ - FIRST WINDOW: roslaunch manipulator_h_path_planning manipulator_h_kinematic_model_tutorial.launch 
 
 
 0.2.2 (2017-03-21 @ 18:46 PM)

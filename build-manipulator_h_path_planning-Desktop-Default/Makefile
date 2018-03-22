@@ -1011,6 +1011,19 @@ object_recognition_msgs_generate_messages_eus/fast:
 .PHONY : object_recognition_msgs_generate_messages_eus/fast
 
 #=============================================================================
+# Target rules for targets named manipulator_h_planning_scene_tutorial
+
+# Build rule for target.
+manipulator_h_planning_scene_tutorial: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 manipulator_h_planning_scene_tutorial
+.PHONY : manipulator_h_planning_scene_tutorial
+
+# fast build rule for target.
+manipulator_h_planning_scene_tutorial/fast:
+	$(MAKE) -f CMakeFiles/manipulator_h_planning_scene_tutorial.dir/build.make CMakeFiles/manipulator_h_planning_scene_tutorial.dir/build
+.PHONY : manipulator_h_planning_scene_tutorial/fast
+
+#=============================================================================
 # Target rules for targets named object_recognition_msgs_generate_messages_nodejs
 
 # Build rule for target.
@@ -1441,12 +1454,40 @@ src/manipulator_h_move_group_interface_tutorial.cpp.s:
 	$(MAKE) -f CMakeFiles/manipulator_h_move_group_interface_tutorial.dir/build.make CMakeFiles/manipulator_h_move_group_interface_tutorial.dir/src/manipulator_h_move_group_interface_tutorial.cpp.s
 .PHONY : src/manipulator_h_move_group_interface_tutorial.cpp.s
 
+src/manipulator_h_planning_scene_tutorial.o: src/manipulator_h_planning_scene_tutorial.cpp.o
+
+.PHONY : src/manipulator_h_planning_scene_tutorial.o
+
+# target to build an object file
+src/manipulator_h_planning_scene_tutorial.cpp.o:
+	$(MAKE) -f CMakeFiles/manipulator_h_planning_scene_tutorial.dir/build.make CMakeFiles/manipulator_h_planning_scene_tutorial.dir/src/manipulator_h_planning_scene_tutorial.cpp.o
+.PHONY : src/manipulator_h_planning_scene_tutorial.cpp.o
+
+src/manipulator_h_planning_scene_tutorial.i: src/manipulator_h_planning_scene_tutorial.cpp.i
+
+.PHONY : src/manipulator_h_planning_scene_tutorial.i
+
+# target to preprocess a source file
+src/manipulator_h_planning_scene_tutorial.cpp.i:
+	$(MAKE) -f CMakeFiles/manipulator_h_planning_scene_tutorial.dir/build.make CMakeFiles/manipulator_h_planning_scene_tutorial.dir/src/manipulator_h_planning_scene_tutorial.cpp.i
+.PHONY : src/manipulator_h_planning_scene_tutorial.cpp.i
+
+src/manipulator_h_planning_scene_tutorial.s: src/manipulator_h_planning_scene_tutorial.cpp.s
+
+.PHONY : src/manipulator_h_planning_scene_tutorial.s
+
+# target to generate assembly for a file
+src/manipulator_h_planning_scene_tutorial.cpp.s:
+	$(MAKE) -f CMakeFiles/manipulator_h_planning_scene_tutorial.dir/build.make CMakeFiles/manipulator_h_planning_scene_tutorial.dir/src/manipulator_h_planning_scene_tutorial.cpp.s
+.PHONY : src/manipulator_h_planning_scene_tutorial.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... install"
 	@echo "... _catkin_empty_exported_target"
 	@echo "... visualization_msgs_generate_messages_eus"
 	@echo "... actionlib_msgs_generate_messages_nodejs"
@@ -1485,7 +1526,6 @@ help:
 	@echo "... object_recognition_msgs_generate_messages_py"
 	@echo "... geometry_msgs_generate_messages_py"
 	@echo "... geometry_msgs_generate_messages_lisp"
-	@echo "... install"
 	@echo "... actionlib_msgs_generate_messages_lisp"
 	@echo "... actionlib_msgs_generate_messages_eus"
 	@echo "... actionlib_generate_messages_lisp"
@@ -1515,6 +1555,7 @@ help:
 	@echo "... object_recognition_msgs_generate_messages_cpp"
 	@echo "... octomap_msgs_generate_messages_eus"
 	@echo "... object_recognition_msgs_generate_messages_eus"
+	@echo "... manipulator_h_planning_scene_tutorial"
 	@echo "... object_recognition_msgs_generate_messages_nodejs"
 	@echo "... tf_generate_messages_py"
 	@echo "... octomap_msgs_generate_messages_cpp"
@@ -1554,6 +1595,9 @@ help:
 	@echo "... src/manipulator_h_move_group_interface_tutorial.o"
 	@echo "... src/manipulator_h_move_group_interface_tutorial.i"
 	@echo "... src/manipulator_h_move_group_interface_tutorial.s"
+	@echo "... src/manipulator_h_planning_scene_tutorial.o"
+	@echo "... src/manipulator_h_planning_scene_tutorial.i"
+	@echo "... src/manipulator_h_planning_scene_tutorial.s"
 .PHONY : help
 
 

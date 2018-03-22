@@ -43,4 +43,7 @@ add_executable(manipulator_h_move_group_interface_tutorial src/manipulator_h_mov
 target_link_libraries(manipulator_h_move_group_interface_tutorial ${catkin_LIBRARIES} ${Boost_LIBRARIES})
 
 add_executable(manipulator_h_kinematic_model_tutorial src/manipulator_h_kinematic_model_tutorial.cpp)
-target_link_libraries(manipulator_h_kinematic_model_tutorial ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+target_link_libraries(manipulator_h_kinematic_model_tutorial ${catkin_LIBRARIES})
+
+add_executable(manipulator_h_planning_scene_tutorial src/manipulator_h_planning_scene_tutorial.cpp)
+target_link_libraries(manipulator_h_planning_scene_tutorial ${catkin_LIBRARIES})

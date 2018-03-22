@@ -9,7 +9,7 @@
 
 int main(int argc, char **argv)
 {
-  ros::init(argc, argv, "right_arm_kinematics");
+  ros::init(argc, argv, "main_group_kinematics");
   ros::AsyncSpinner spinner(1);
   spinner.start();
 

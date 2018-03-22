@@ -50,3 +50,6 @@ target_link_libraries(manipulator_h_planning_scene_tutorial ${catkin_LIBRARIES})
 
 add_executable(manipulator_h_planning_scene_ros_api_tutorial src/manipulator_h_planning_scene_ros_api_tutorial.cpp)
 target_link_libraries(manipulator_h_planning_scene_ros_api_tutorial ${catkin_LIBRARIES})
+
+add_executable(manipulator_h_motion_planning_api_tutorial src/manipulator_h_motion_planning_api_tutorial.cpp)
+target_link_libraries(manipulator_h_motion_planning_api_tutorial ${catkin_LIBRARIES})

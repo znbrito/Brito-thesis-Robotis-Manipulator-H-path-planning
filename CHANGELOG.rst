@@ -2,6 +2,14 @@
 Changelog for package brito_thesis
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.2.6 (2017-03-22 @ 2:14 PM)
+-----------
+* Added motion planners tutorial from MoveIt!, addapted to the Robotis Manipulator-H
+
+* In order to run the simulation, run the following in the terminal:
+ - FIRST WINDOW: roslaunch manipulator_h_path_planning manipulator_h_motion_planning_api_tutorial.launch
+
+
 0.2.5 (2017-03-22 @ 11:24 AM)
 -----------
 * Added ROS API planning scene from MoveIt!, addapted to the Robotis Manipulator-H
@@ -18,7 +26,7 @@ Changelog for package brito_thesis
  - FIRST WINDOW: roslaunch manipulator_h_path_planning manipulator_h_planning_scene_tutorial.launch 
 
 
-0.2.3 (2017-03-21 @ 19:35 PM)
+0.2.3 (2017-03-21 @ 7:35 PM)
 -----------
 * Added the kinematic model tutorial from MoveIt!, addapted to the Robotis Manipulator-H
 
@@ -26,7 +34,7 @@ Changelog for package brito_thesis
  - FIRST WINDOW: roslaunch manipulator_h_path_planning manipulator_h_kinematic_model_tutorial.launch 
 
 
-0.2.2 (2017-03-21 @ 18:46 PM)
+0.2.2 (2017-03-21 @ 6:46 PM)
 -----------
 * Programm is now fully functional. Removed the attach and dettach functions. Inserted 2 services, one to add and another to remove gazebo objects, so the object can be visualized both in Gazebo and RViz
 

@@ -79,6 +79,17 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
+
 # Special rule for the target list_install_components
 list_install_components:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
@@ -121,17 +132,6 @@ install/strip: preinstall
 install/strip/fast: install/strip
 
 .PHONY : install/strip/fast
-
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -658,6 +658,19 @@ geometry_msgs_generate_messages_lisp: cmake_check_build_system
 geometry_msgs_generate_messages_lisp/fast:
 	$(MAKE) -f CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build.make CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build
 .PHONY : geometry_msgs_generate_messages_lisp/fast
+
+#=============================================================================
+# Target rules for targets named std_msgs_generate_messages_lisp
+
+# Build rule for target.
+std_msgs_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 std_msgs_generate_messages_lisp
+.PHONY : std_msgs_generate_messages_lisp
+
+# fast build rule for target.
+std_msgs_generate_messages_lisp/fast:
+	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make CMakeFiles/std_msgs_generate_messages_lisp.dir/build
+.PHONY : std_msgs_generate_messages_lisp/fast
 
 #=============================================================================
 # Target rules for targets named actionlib_msgs_generate_messages_lisp
@@ -1349,17 +1362,17 @@ manipulator_h_move_group_interface_tutorial/fast:
 .PHONY : manipulator_h_move_group_interface_tutorial/fast
 
 #=============================================================================
-# Target rules for targets named std_msgs_generate_messages_lisp
+# Target rules for targets named manipulator_h_motion_planning_api_tutorial
 
 # Build rule for target.
-std_msgs_generate_messages_lisp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 std_msgs_generate_messages_lisp
-.PHONY : std_msgs_generate_messages_lisp
+manipulator_h_motion_planning_api_tutorial: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 manipulator_h_motion_planning_api_tutorial
+.PHONY : manipulator_h_motion_planning_api_tutorial
 
 # fast build rule for target.
-std_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make CMakeFiles/std_msgs_generate_messages_lisp.dir/build
-.PHONY : std_msgs_generate_messages_lisp/fast
+manipulator_h_motion_planning_api_tutorial/fast:
+	$(MAKE) -f CMakeFiles/manipulator_h_motion_planning_api_tutorial.dir/build.make CMakeFiles/manipulator_h_motion_planning_api_tutorial.dir/build
+.PHONY : manipulator_h_motion_planning_api_tutorial/fast
 
 #=============================================================================
 # Target rules for targets named gmock
@@ -1439,6 +1452,33 @@ src/manipulator_h_kinematic_model_tutorial.s: src/manipulator_h_kinematic_model_
 src/manipulator_h_kinematic_model_tutorial.cpp.s:
 	$(MAKE) -f CMakeFiles/manipulator_h_kinematic_model_tutorial.dir/build.make CMakeFiles/manipulator_h_kinematic_model_tutorial.dir/src/manipulator_h_kinematic_model_tutorial.cpp.s
 .PHONY : src/manipulator_h_kinematic_model_tutorial.cpp.s
+
+src/manipulator_h_motion_planning_api_tutorial.o: src/manipulator_h_motion_planning_api_tutorial.cpp.o
+
+.PHONY : src/manipulator_h_motion_planning_api_tutorial.o
+
+# target to build an object file
+src/manipulator_h_motion_planning_api_tutorial.cpp.o:
+	$(MAKE) -f CMakeFiles/manipulator_h_motion_planning_api_tutorial.dir/build.make CMakeFiles/manipulator_h_motion_planning_api_tutorial.dir/src/manipulator_h_motion_planning_api_tutorial.cpp.o
+.PHONY : src/manipulator_h_motion_planning_api_tutorial.cpp.o
+
+src/manipulator_h_motion_planning_api_tutorial.i: src/manipulator_h_motion_planning_api_tutorial.cpp.i
+
+.PHONY : src/manipulator_h_motion_planning_api_tutorial.i
+
+# target to preprocess a source file
+src/manipulator_h_motion_planning_api_tutorial.cpp.i:
+	$(MAKE) -f CMakeFiles/manipulator_h_motion_planning_api_tutorial.dir/build.make CMakeFiles/manipulator_h_motion_planning_api_tutorial.dir/src/manipulator_h_motion_planning_api_tutorial.cpp.i
+.PHONY : src/manipulator_h_motion_planning_api_tutorial.cpp.i
+
+src/manipulator_h_motion_planning_api_tutorial.s: src/manipulator_h_motion_planning_api_tutorial.cpp.s
+
+.PHONY : src/manipulator_h_motion_planning_api_tutorial.s
+
+# target to generate assembly for a file
+src/manipulator_h_motion_planning_api_tutorial.cpp.s:
+	$(MAKE) -f CMakeFiles/manipulator_h_motion_planning_api_tutorial.dir/build.make CMakeFiles/manipulator_h_motion_planning_api_tutorial.dir/src/manipulator_h_motion_planning_api_tutorial.cpp.s
+.PHONY : src/manipulator_h_motion_planning_api_tutorial.cpp.s
 
 src/manipulator_h_move_group_interface_tutorial.o: src/manipulator_h_move_group_interface_tutorial.cpp.o
 
@@ -1567,6 +1607,8 @@ help:
 	@echo "... object_recognition_msgs_generate_messages_py"
 	@echo "... geometry_msgs_generate_messages_py"
 	@echo "... geometry_msgs_generate_messages_lisp"
+	@echo "... edit_cache"
+	@echo "... std_msgs_generate_messages_lisp"
 	@echo "... actionlib_msgs_generate_messages_lisp"
 	@echo "... actionlib_msgs_generate_messages_eus"
 	@echo "... actionlib_generate_messages_lisp"
@@ -1623,9 +1665,8 @@ help:
 	@echo "... tf2_msgs_generate_messages_nodejs"
 	@echo "... tf_generate_messages_cpp"
 	@echo "... manipulator_h_move_group_interface_tutorial"
+	@echo "... manipulator_h_motion_planning_api_tutorial"
 	@echo "... install/strip"
-	@echo "... std_msgs_generate_messages_lisp"
-	@echo "... edit_cache"
 	@echo "... gmock"
 	@echo "... gmock_main"
 	@echo "... gtest"
@@ -1633,6 +1674,9 @@ help:
 	@echo "... src/manipulator_h_kinematic_model_tutorial.o"
 	@echo "... src/manipulator_h_kinematic_model_tutorial.i"
 	@echo "... src/manipulator_h_kinematic_model_tutorial.s"
+	@echo "... src/manipulator_h_motion_planning_api_tutorial.o"
+	@echo "... src/manipulator_h_motion_planning_api_tutorial.i"
+	@echo "... src/manipulator_h_motion_planning_api_tutorial.s"
 	@echo "... src/manipulator_h_move_group_interface_tutorial.o"
 	@echo "... src/manipulator_h_move_group_interface_tutorial.i"
 	@echo "... src/manipulator_h_move_group_interface_tutorial.s"

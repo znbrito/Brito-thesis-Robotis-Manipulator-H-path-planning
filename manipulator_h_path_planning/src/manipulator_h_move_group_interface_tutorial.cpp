@@ -99,7 +99,7 @@ int main(int argc, char **argv)
   // end-effector.
   geometry_msgs::Pose target_pose1;
 
-  // Useing a tf quaternion because all the orientations need normalized
+  // Using a tf quaternion because all the orientations need normalized
   // quaternions and this class can define and normalize quaternions
   tf::Quaternion aux;
 

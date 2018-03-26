@@ -5,25 +5,35 @@
 
 
 <!-- Revolute-Revolute Manipulator -->
-<robot name="robotis_manipulator_h" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="robotis_manipulator_h" xmlns:xacro="http://ros.org/wiki/xacro">
 
   <!-- some parameters -->
   <xacro:property name="pi" value="3.141592654" />
+
+  <!-- By default, do not enable Manipulator-H on top of the Husky -->
+  <xacro:arg name="manipulator_h_enabled" default="false" />
 
   <!-- Import all Gazebo-customization elements, including Gazebo colors -->
   <xacro:include filename="$(find manipulator_h_description)/urdf/manipulator_h.gazebo" />
   <!-- Import Rviz colors -->
   <xacro:include filename="$(find manipulator_h_description)/urdf/materials.xacro" />
 
-  <!-- Used for fixing robot to Gazebo 'link 1' -->
-  <link name="world">
-  </link>
+<!-- ///////////////////// IF HUSKY IS NOT CALLED, CREATE A LINK "world" TO CONNECT THE MANIPULATOR TO THE WORLD /////////////////// -->
 
-  <joint name="world_fixed" type="fixed">
-    <origin xyz="0 0 0" rpy="0 0 0"/>
-    <parent link="world"/>
-    <child link="link1"/>
-  </joint>
+  <!-- Used for fixing robot to Gazebo 'link 1' -->
+  <xacro:unless value="$(arg manipulator_h_enabled)">
+
+    <link name="world"/>
+
+    <joint name="world_fixed" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <parent link="world"/>
+      <child link="link1"/>
+    </joint>
+
+  </xacro:unless>
+
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
   <!-- link 1 -->
   <link name="link1">

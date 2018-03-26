@@ -2,6 +2,48 @@
 Changelog for package brito_thesis
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.3.0 (2017-03-26 @ 12:19 AM)
+-----------
+* Modified the packages "manipulator_h_description" and "manipulator_h_gazebo" in order to be able to run Husky with Manipulator-H on top of it. Modified files:
+ - manipulator_h_description/urdf/manipulator_h.xacro
+ - manipulator_h_description/urdf/manipulator_h.gazebo
+
+* Added the following Husky packages from the INDIGO devel:
+ - husky/
+  - husky_control;
+  - husky_description;
+  - husky_msgs;
+  - husky_navigation;
+  - husky_ur5_moveit_config;
+
+Downloaded from "https://github.com/husky/husky.git";
+Also:
+ - husky_simulator/
+  - husky_gazebo;
+  - husky_simulator;
+
+Downloaded from "https://github.com/husky/husky_simulator.git";
+And finally:
+ - husky_desktop/
+  - husky_desktop;
+  - husky_viz;
+
+Downloaded from "https://github.com/husky/husky_desktop.git".
+Modified files: 
+ - husky_gazebo/launch/husky_empty_world.launch
+ - husky_gazebo/launch/spawn_husky.launch
+ - husky_gazebo/urdf/description.gazebo.xacro
+ - husky_description/urdf/husky.urdf.xacro
+ - husky_gazebo/urdf/husky.gazebo.xacro
+
+* Right now it is only possible to visualize the husky + the plugin in Gazebo. In order to run the simulation, run the following in the terminal:
+ - HUSKY: $roslaunch husky_gazebo husky_empty_world.launch 
+ - HUSKY + MANIPULATOR-H: $roslaunch husky_gazebo husky_empty_world.launch manipulator_h_enabled:=true
+ - HUSKY + UR5: $roslaunch husky_gazebo husky_empty_world.launch ur5_enabled:=true
+ - HUSKY + KINECT: $roslaunch husky_gazebo husky_empty_world.launch kinect_enabled:=true
+ - HUSKY + LASER: $roslaunch husky_gazebo husky_empty_world.launch laser_enabled:=true
+
+
 0.2.7 (2017-03-22 @ 2:55 PM)
 -----------
 * Added motion pipeline tutorial from MoveIt!, addapted to the Robotis Manipulator-H

@@ -23,6 +23,7 @@ find_package(catkin REQUIRED
 find_package(Boost REQUIRED system filesystem date_time thread)
 
 catkin_package(
+#  INCLUDE_DIRS include
   CATKIN_DEPENDS
     moveit_core
     moveit_ros_planning_interface
@@ -49,7 +50,7 @@ add_executable(manipulator_h_planning_scene_tutorial src/manipulator_h_planning_
 target_link_libraries(manipulator_h_planning_scene_tutorial ${catkin_LIBRARIES})
 
 add_executable(manipulator_h_planning_scene_ros_api_tutorial src/manipulator_h_planning_scene_ros_api_tutorial.cpp)
-target_link_libraries(manipulator_h_planning_scene_ros_api_tutorial ${catkin_LIBRARIES})
+target_link_libraries(manipulator_h_planning_scene_ros_api_tutorial ${catkin_LIBRARIES} ${Boost_LIBRARIES} interactive_markers)
 
 add_executable(manipulator_h_planning_pipeline_tutorial src/manipulator_h_planning_pipeline_tutorial.cpp)
 target_link_libraries(manipulator_h_planning_pipeline_tutorial ${catkin_LIBRARIES})

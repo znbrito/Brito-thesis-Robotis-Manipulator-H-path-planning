@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<robot>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
 
   <!-- ros_control plugin -->
   <gazebo>
@@ -9,9 +9,14 @@
     </plugin>
   </gazebo>
 
+<!-- ///////////////////// IF HUSKY IS NOT CALLED, THE LINK "world" IS THE REFERENCE LINK TO GAZEBO /////////////////// -->
+
   <!-- World -->
-  <gazebo reference="world">
-  </gazebo>
+  <xacro:unless value="$(arg manipulator_h_enabled)">
+    <gazebo reference="world"/>
+  </xacro:unless>
+
+<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
   <!-- Link1 -->
   <gazebo reference="link1">

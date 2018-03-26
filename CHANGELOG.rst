@@ -2,6 +2,11 @@
 Changelog for package brito_thesis
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.3.2 (2017-03-26 @ 6:46 PM)
+-----------
+* Commit changes in the "husky" and "husky_simulator" indigo repositories. Don't really know why the commits on this repositories weren't automatically done. 
+
+
 0.3.2 (2017-03-26 @ 6:37 PM)
 -----------
 * Created a box and a cylinder to simulate the base that sustains the manipulator. 

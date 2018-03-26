@@ -2,7 +2,18 @@
 Changelog for package brito_thesis
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-0.3.0 (2017-03-26 @ 12:19 AM)
+0.3.1 (2017-03-26 @ 2:42 PM)
+-----------
+* Modified the controller type used by MoveIt! in the RObotis Manipulator-H to make it possible for the Husky robot to move without lifting up his back/front wheels, depending on the movements done. 
+
+* After the changes I noticed something on Robotis Manipulator-H. His initial position is now a little leaning forward. THIS MAY BE ALTERED IN THE FUTURE!!
+
+* Try to move the robot by clicking on the keyboard while selecting the second terminal, after running the following in 2 different terminals:
+ - FIRST WINDOW: roslaunch husky_gazebo husky_empty_world.launch manipulator_h_enabled:=true
+ - SECOND WINDOW: rosrun teleop_twist_keyboard teleop_twist_keyboard.py cmd_vel:=husky_velocity_controller/cmd_vel
+
+
+0.3.0 (2017-03-26 @ 12:20 AM)
 -----------
 * Modified the packages "manipulator_h_description" and "manipulator_h_gazebo" in order to be able to run Husky with Manipulator-H on top of it. Modified files:
  - manipulator_h_description/urdf/manipulator_h.xacro

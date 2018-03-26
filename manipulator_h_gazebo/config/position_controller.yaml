@@ -6,7 +6,7 @@ robotis_manipulator_h:
 
   # Controllers for MoveIt! ------------------------------------
   main_group_controller:
-    type: position_controllers/JointTrajectoryController
+    type: effort_controllers/JointTrajectoryController
     joints:
       - joint1
       - joint2
@@ -14,6 +14,14 @@ robotis_manipulator_h:
       - joint4
       - joint5
       - joint6
+    gains: 
+      joint1: {p: 9000.0, i: 0.1, d: 500.0}
+      joint2: {p: 9000.0, i: 0.1, d: 500.0}
+      joint3: {p: 6000.0, i: 0.1, d: 400.0}
+      joint4: {p: 6000.0, i: 0.1, d: 400.0}
+      joint5: {p: 6000.0, i: 0.1, d: 400.0}
+      joint6: {p: 6000.0, i: 0.1, d: 400.0}
+   
       
   # Position Controllers ---------------------------------------
   joint1_position:

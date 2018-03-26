@@ -2,6 +2,17 @@
 Changelog for package brito_thesis
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.3.2 (2017-03-26 @ 6:37 PM)
+-----------
+* Created a box and a cylinder to simulate the base that sustains the manipulator. 
+
+* Note that in boxes and cylinders, the Z axis starts to count from the middle of the object. Also fixed links and joints don't appear in Gazebo because they can't be moved so Gazebo decides to ignore them
+
+* Try to move the robot by clicking on the keyboard while selecting the second terminal, after running the following in 2 different terminals:
+ - FIRST WINDOW: roslaunch husky_gazebo husky_empty_world.launch manipulator_h_enabled:=true
+ - SECOND WINDOW: rosrun teleop_twist_keyboard teleop_twist_keyboard.py cmd_vel:=husky_velocity_controller/cmd_vel
+
+
 0.3.1 (2017-03-26 @ 2:42 PM)
 -----------
 * Modified the controller type used by MoveIt! in the RObotis Manipulator-H to make it possible for the Husky robot to move without lifting up his back/front wheels, depending on the movements done. 

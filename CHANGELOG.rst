@@ -2,6 +2,15 @@
 Changelog for package brito_thesis
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.4.1 (2017-03-27 @ 1:09 PM)
+-----------
+* Plans done in RViz can now be visualized in Gazebo. Altered files can be seen in Git Kraken.
+
+* In order to perform path planning with RViz and visualizing them both in RViz and Gazebo, run the following in the terminal:
+ - FIRST WINDOW: roslaunch husky_manipulator_h_moveit_config demo.launch
+ - SECOND WINDOW: roslaunch husky_manipulator_h_moveit_config husky_manipulator_h_planning_execution.launch
+
+
 0.4.0 (2017-03-27 @ 11:59 AM)
 -----------
 * Added package "husky_manipulator_h_moveit_config" to make it possible to perform path planning with the manipulator on top of the Husky robot. Right now path planning can be done with RViz, using the "demo.launch". Keep in mind that future changes to the configurations may be necessary because the AGROB V16's tower isn't modelled and the manipulator's base isn't 100% modelled.
@@ -150,8 +159,8 @@ Modified files:
 * Added the "manipulator_h_gazebo" package. The Gazebo simulator is now integrated with MoveIt!. Plans made in RViz can now be executed (and not only planned) and it is possible to see the robot moving in the Gazebo simulation;
 
 * The following links were usefull to understand how to integrate Gazebo with MoveIt!:
- - https://github.com/AS4SR/general_info/wiki/ROS-MoveIt!-and-Gazebo-Integration-(WIP);
- - https://www.youtube.com/watch?v=j6bBxfD_bYs;
+ - https://github.com/AS4SR/general_info/wiki/ROS-MoveIt!-and-Gazebo-Integration-(WIP)
+ - https://www.youtube.com/watch?v=j6bBxfD_bYs
  - http://wiki.ros.org/joint_trajectory_controller
 
 * In order to run the simulation, run the following in the terminal:

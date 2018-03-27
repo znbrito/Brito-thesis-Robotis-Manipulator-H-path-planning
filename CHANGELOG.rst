@@ -2,6 +2,20 @@
 Changelog for package brito_thesis
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.4.0 (2017-03-27 @ 11:59 AM)
+-----------
+* Added package "husky_manipulator_h_moveit_config" to make it possible to perform path planning with the manipulator on top of the Husky robot. Right now path planning can be done with RViz, using the "demo.launch". Keep in mind that future changes to the configurations may be necessary because the AGROB V16's tower isn't modelled and the manipulator's base isn't 100% modelled.
+
+* When launching the MoveIt! Setup Assistant use "--inorder manipulator_h_enabled:=true" in "xacro arguments" when loading the MoveIt! configuration to load the manipulator on top of the Husky robot.
+
+* The following website links were useful to do the configuration, especially during the virtual joint setup:
+ - http://wiki.ros.org/Industrial/Tutorials/Create_a_MoveIt_Pkg_for_an_Industrial_Robot
+ - http://docs.ros.org/kinetic/api/moveit_tutorials/html/doc/setup_assistant/setup_assistant_tutorial.html#step-3-add-virtual-joints
+
+* In order to perform path planning with RViz, run the following in the terminal (note that plans can't still be visualized in Gazebo):
+ - FIRST WINDOW: roslaunch husky_manipulator_h_moveit_config demo.launch
+
+
 0.3.2 (2017-03-26 @ 6:46 PM)
 -----------
 * Commit changes in the "husky" and "husky_simulator" indigo repositories. Don't really know why the commits on this repositories weren't automatically done. 

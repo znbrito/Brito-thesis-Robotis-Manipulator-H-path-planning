@@ -79,6 +79,17 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: install/local
+
+.PHONY : install/local/fast
+
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -99,17 +110,6 @@ list_install_components:
 list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: install/local
-
-.PHONY : install/local/fast
 
 # Special rule for the target test
 test:
@@ -1388,6 +1388,19 @@ manipulator_h_move_group_interface_tutorial/fast:
 .PHONY : manipulator_h_move_group_interface_tutorial/fast
 
 #=============================================================================
+# Target rules for targets named oak_tree_tests
+
+# Build rule for target.
+oak_tree_tests: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 oak_tree_tests
+.PHONY : oak_tree_tests
+
+# fast build rule for target.
+oak_tree_tests/fast:
+	$(MAKE) -f CMakeFiles/oak_tree_tests.dir/build.make CMakeFiles/oak_tree_tests.dir/build
+.PHONY : oak_tree_tests/fast
+
+#=============================================================================
 # Target rules for targets named gmock
 
 # Build rule for target.
@@ -1601,6 +1614,33 @@ src/manipulator_h_planning_scene_tutorial.cpp.s:
 	$(MAKE) -f CMakeFiles/manipulator_h_planning_scene_tutorial.dir/build.make CMakeFiles/manipulator_h_planning_scene_tutorial.dir/src/manipulator_h_planning_scene_tutorial.cpp.s
 .PHONY : src/manipulator_h_planning_scene_tutorial.cpp.s
 
+src/oak_tree_tests.o: src/oak_tree_tests.cpp.o
+
+.PHONY : src/oak_tree_tests.o
+
+# target to build an object file
+src/oak_tree_tests.cpp.o:
+	$(MAKE) -f CMakeFiles/oak_tree_tests.dir/build.make CMakeFiles/oak_tree_tests.dir/src/oak_tree_tests.cpp.o
+.PHONY : src/oak_tree_tests.cpp.o
+
+src/oak_tree_tests.i: src/oak_tree_tests.cpp.i
+
+.PHONY : src/oak_tree_tests.i
+
+# target to preprocess a source file
+src/oak_tree_tests.cpp.i:
+	$(MAKE) -f CMakeFiles/oak_tree_tests.dir/build.make CMakeFiles/oak_tree_tests.dir/src/oak_tree_tests.cpp.i
+.PHONY : src/oak_tree_tests.cpp.i
+
+src/oak_tree_tests.s: src/oak_tree_tests.cpp.s
+
+.PHONY : src/oak_tree_tests.s
+
+# target to generate assembly for a file
+src/oak_tree_tests.cpp.s:
+	$(MAKE) -f CMakeFiles/oak_tree_tests.dir/build.make CMakeFiles/oak_tree_tests.dir/src/oak_tree_tests.cpp.s
+.PHONY : src/oak_tree_tests.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -1609,6 +1649,7 @@ help:
 	@echo "... depend"
 	@echo "... install"
 	@echo "... rebuild_cache"
+	@echo "... install/local"
 	@echo "... _catkin_empty_exported_target"
 	@echo "... visualization_msgs_generate_messages_eus"
 	@echo "... actionlib_msgs_generate_messages_nodejs"
@@ -1672,7 +1713,6 @@ help:
 	@echo "... tests"
 	@echo "... trajectory_msgs_generate_messages_lisp"
 	@echo "... trajectory_msgs_generate_messages_nodejs"
-	@echo "... install/local"
 	@echo "... trajectory_msgs_generate_messages_py"
 	@echo "... actionlib_generate_messages_nodejs"
 	@echo "... graph_msgs_generate_messages_lisp"
@@ -1707,6 +1747,7 @@ help:
 	@echo "... tf2_msgs_generate_messages_nodejs"
 	@echo "... tf_generate_messages_cpp"
 	@echo "... manipulator_h_move_group_interface_tutorial"
+	@echo "... oak_tree_tests"
 	@echo "... install/strip"
 	@echo "... gmock"
 	@echo "... gmock_main"
@@ -1730,6 +1771,9 @@ help:
 	@echo "... src/manipulator_h_planning_scene_tutorial.o"
 	@echo "... src/manipulator_h_planning_scene_tutorial.i"
 	@echo "... src/manipulator_h_planning_scene_tutorial.s"
+	@echo "... src/oak_tree_tests.o"
+	@echo "... src/oak_tree_tests.i"
+	@echo "... src/oak_tree_tests.s"
 .PHONY : help
 
 

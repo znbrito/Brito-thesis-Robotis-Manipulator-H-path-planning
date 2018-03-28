@@ -2,6 +2,17 @@
 Changelog for package brito_thesis
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.4.3 (2017-03-28 @ 5:59 PM)
+-----------
+* Added a new tutorial were path planning is done taking in account an oak tree loaded by a SDF file. Keep in mind that you have to manually add and remove the oak tree from the gazebo simulation.
+
+* In order to perform path planning with RViz and visualizing them both in RViz and Gazebo, run the following in the terminal:
+ - FIRST WINDOW: roslaunch husky_gazebo husky_empty_world.launch manipulator_h_enabled:=true
+ - SECOND WINDOW: rosrun gazebo_ros spawn_model -file /home/josebrito/catkin_ws/src/brito_thesis/manipulator_h_path_planning/meshes/oak_tree/model.sdf -sdf -model oak_tree -y 1
+ - THIRD WINDOW: roslaunch husky_manipulator_h_moveit_config husky_manipulator_h_planning_execution.launch
+ - FOURTH WINDOW: roslaunch manipulator_h_path_planning husky_manipulator_h_move_group_interface_tutorial.launch
+
+
 0.4.2 (2017-03-28 @ 11:12 AM)
 -----------
 * MoveIt! move group tutorials now working for the Husky + Manipulator-H integration. Watchout for the modifications in the node that send the MoveIt! controls. The base frame is now "base_link" instead of "world".

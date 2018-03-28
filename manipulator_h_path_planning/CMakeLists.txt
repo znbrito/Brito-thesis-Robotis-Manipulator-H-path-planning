@@ -59,3 +59,6 @@ target_link_libraries(manipulator_h_planning_pipeline_tutorial ${catkin_LIBRARIE
 # Husky + Manipulator-H
 add_executable(husky_manipulator_h_move_group_interface_tutorial src/husky_manipulator_h_move_group_interface_tutorial.cpp)
 target_link_libraries(husky_manipulator_h_move_group_interface_tutorial ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+
+add_executable(oak_tree_tests src/oak_tree_tests.cpp)
+target_link_libraries(oak_tree_tests ${catkin_LIBRARIES} ${Boost_LIBRARIES})

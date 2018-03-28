@@ -2,12 +2,22 @@
 Changelog for package brito_thesis
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.4.2 (2017-03-28 @ 11:12 AM)
+-----------
+* MoveIt! move group tutorials now working for the Husky + Manipulator-H integration. Watchout for the modifications in the node that send the MoveIt! controls. The base frame is now "base_link" instead of "world".
+
+* In order to perform path planning with RViz and visualizing them both in RViz and Gazebo, run the following in the terminal:
+ - FIRST WINDOW: roslaunch husky_gazebo husky_empty_world.launch manipulator_h_enabled:=true
+ - SECOND WINDOW: roslaunch husky_manipulator_h_moveit_config husky_manipulator_h_planning_execution.launch
+ - THIRD WINDOW: roslaunch manipulator_h_path_planning husky_manipulator_h_move_group_interface_tutorial.launch
+
+
 0.4.1 (2017-03-27 @ 1:09 PM)
 -----------
 * Plans done in RViz can now be visualized in Gazebo. Altered files can be seen in Git Kraken.
 
 * In order to perform path planning with RViz and visualizing them both in RViz and Gazebo, run the following in the terminal:
- - FIRST WINDOW: roslaunch husky_manipulator_h_moveit_config demo.launch
+ - FIRST WINDOW: roslaunch husky_gazebo husky_empty_world.launch manipulator_h_enabled:=true
  - SECOND WINDOW: roslaunch husky_manipulator_h_moveit_config husky_manipulator_h_planning_execution.launch
 
 

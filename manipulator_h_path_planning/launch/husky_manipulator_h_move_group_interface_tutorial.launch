@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+
+  <node name="husky_manipulator_h_move_group_interface_tutorial" pkg="manipulator_h_path_planning" type="husky_manipulator_h_move_group_interface_tutorial" respawn="false" output="screen" args="joint_states:=/robotis_manipulator_h/joint_states"/>
+
+</launch>

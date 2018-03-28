@@ -40,6 +40,7 @@ include_directories(SYSTEM ${Boost_INCLUDE_DIR} ${EIGEN3_INCLUDE_DIRS})
 include_directories(${catkin_INCLUDE_DIRS})
 link_directories(${catkin_LIBRARY_DIRS})
 
+# Only Manipulator-H
 add_executable(manipulator_h_move_group_interface_tutorial src/manipulator_h_move_group_interface_tutorial.cpp)
 target_link_libraries(manipulator_h_move_group_interface_tutorial ${catkin_LIBRARIES} ${Boost_LIBRARIES})
 
@@ -54,3 +55,7 @@ target_link_libraries(manipulator_h_planning_scene_ros_api_tutorial ${catkin_LIB
 
 add_executable(manipulator_h_planning_pipeline_tutorial src/manipulator_h_planning_pipeline_tutorial.cpp)
 target_link_libraries(manipulator_h_planning_pipeline_tutorial ${catkin_LIBRARIES})
+
+# Husky + Manipulator-H
+add_executable(husky_manipulator_h_move_group_interface_tutorial src/husky_manipulator_h_move_group_interface_tutorial.cpp)
+target_link_libraries(husky_manipulator_h_move_group_interface_tutorial ${catkin_LIBRARIES} ${Boost_LIBRARIES})

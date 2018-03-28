@@ -80,6 +80,7 @@
 /home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/CMakeFiles/shape_msgs_generate_messages_eus.dir
 /home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/CMakeFiles/moveit_ros_planning_gencfg.dir
 /home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/CMakeFiles/moveit_ros_manipulation_gencfg.dir
+/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/CMakeFiles/husky_manipulator_h_move_group_interface_tutorial.dir
 /home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/CMakeFiles/std_msgs_generate_messages_cpp.dir
 /home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir
 /home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/CMakeFiles/graph_msgs_generate_messages_cpp.dir

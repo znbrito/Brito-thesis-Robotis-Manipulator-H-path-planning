@@ -2,6 +2,11 @@
 Changelog for package brito_thesis
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.5.0 (2017-03-29 @ 10:12 AM)
+-----------
+* Started to substitute packages from Husky INDIGO to Husky KINETIC. Right now only deleted the indigo packages and downloaded the kinetic ones
+
+
 0.4.3 (2017-03-28 @ 5:59 PM)
 -----------
 * Added a new tutorial were path planning is done taking in account an oak tree loaded by a SDF file. Keep in mind that you have to manually add and remove the oak tree from the gazebo simulation.

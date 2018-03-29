@@ -51,11 +51,6 @@ int main(int argc, char **argv)
   // Raw pointers are frequently used to refer to the planning group for improved performance
   const robot_state::JointModelGroup *joint_model_group = move_group.getCurrentState()->getJointModelGroup(PLANNING_GROUP);
 
-  // Create the client that will call the gazebo service to spawn objects
-  ros::ServiceClient gazebo_spawn_model = node_handle.serviceClient<gazebo_msgs::SpawnModel>("/gazebo/spawn_urdf_model");
-
-  // Create another client that will call the gazebo service to delete this object
-  ros::ServiceClient gazebo_delete_model = node_handle.serviceClient<gazebo_msgs::DeleteModel>("/gazebo/delete_model");
 
 
   // Visualization

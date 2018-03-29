@@ -12,6 +12,7 @@
   <arg name="kinect_enabled" default="$(optenv HUSKY_KINECT_ENABLED false)"/>
   <arg name="urdf_extras" default="$(optenv HUSKY_URDF_EXTRAS)"/>
   <arg name="manipulator_h_enabled" default="false"/> <!-- Added the Robotis Manipulator-H -->
+  <arg name="ur5_enabled" default="false"/> <!-- Added the UR5 -->
 
 
   <include file="$(find multimaster_launch)/launch/multimaster_robot.launch" if="$(arg multimaster)">
@@ -27,6 +28,7 @@
     <arg name="kinect_enabled" default="$(arg kinect_enabled)"/>
     <arg name="urdf_extras" default="$(arg urdf_extras)"/>
     <arg name="manipulator_h_enabled" default="$(arg manipulator_h_enabled)"/> <!-- Added the Robotis Manipulator-H -->
+    <arg name="ur5_enabled" default="$(arg ur5_enabled)"/> <!-- Added the UR5 -->
   </include>
 
   <!-- Load controller configuration -->

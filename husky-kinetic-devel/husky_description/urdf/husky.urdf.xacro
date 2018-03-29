@@ -44,6 +44,12 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   </xacro:if>
 
 
+
+  <xacro:arg name="ur5_enabled" default="false"/> <!-- Added the UR5 -->
+  <xacro:include filename="$(find ur_description)/urdf/ur5.urdf.xacro" />
+  
+
+
   <!-- Included URDF/XACRO Files -->
   <xacro:include filename="$(find husky_description)/urdf/decorations.urdf.xacro" />
   <xacro:include filename="$(find husky_description)/urdf/wheel.urdf.xacro" />
@@ -170,6 +176,26 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   </xacro:if>
 
  
+
+
+  <!-- Enable UR5 -->
+  <xacro:if value="$(arg ur5_enabled)">
+
+    <xacro:property name="reflect" value="-1" />
+
+    <!-- Spawn arm -->
+    <xacro:ur5_robot prefix="ur5_arm_" joint_limited="true"/>
+
+    <!-- Join arm -->
+    <joint name="ur5_arm_base" type="fixed">
+      <parent link="top_plate_link" />
+      <child link="ur5_arm_base_link" />
+      <origin xyz="0.3058 0 0.0065" rpy="0.0 0.0 -1.57" />
+    </joint>
+
+  </xacro:if>
+
+
 
 
   <!-- Enable Robotis Manipulator-H -->

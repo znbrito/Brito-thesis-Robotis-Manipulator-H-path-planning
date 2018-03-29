@@ -2,6 +2,21 @@
 Changelog for package brito_thesis
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.5.2 (2017-03-30 @ 0:59 AM)
+-----------
+* Removed the Husky's top plate when spawning the Manipulator-H. In order to do that, disabled the top plate in the following file:
+ - "decorations.urdf.xacro" inside the "husky_description" package.
+
+* Keep in mind that the top plate is necessary when launching the kinect or the laser! If you want to launch both the laser and the Manipulator-H, go to the "decorations.urdf.xacro" file and enable to top plate. There will be a collision between the top plate and the box where the Manipulator-H stands but right now I still haven't figured out if that will cause any problems in MoveIt!, since I still haven't started to work with it.
+
+* Integrated the UR5 with the Husky Kinetic package. Keep in mind that UR5 also needs the Husky's top plate. I altered the file "arm_controller_ur5.yaml" from the package "ur_gazebo" because the controller spawned for the UR5 arm needed a prefix added to its joints names for them to have specific joint names that won't be mistaken by the Husky's joint names.
+
+* UR5 is now possible to visualize in both Gazebo and RViz (through the "view_model.launch" file in the "husky_viz" package). Manipulator-H was only visible on Gazebo in the last commit and now it's also visible in RViz.
+
+* In order to run the simulation, run the following in the terminal:
+ - FIRST WINDOW: roslaunch husky_gazebo husky_empty_world.launch ur5_enabled:=true
+
+
 0.5.1 (2017-03-29 @ 12:30 AM)
 -----------
 * Integrated the Robotis Manipulator-H with the Husky Kinetic package. Right now only spawning the Husky and the Manipulator-H is working.

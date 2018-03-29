@@ -38,6 +38,8 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <arg name="urdf_extras" default="$(optenv HUSKY_URDF_EXTRAS)"/>
   <arg name="manipulator_h_enabled" default="false"/> <!-- Added the Robotis Manipulator-H -->
   <arg name="manipulator_h_control_yaml_file" default="$(find manipulator_h_gazebo)/config/position_controller.yaml"/> <!-- Added the Robotis Manipulator-H -->
+  <arg name="ur5_enabled" default="false"/> <!-- Added the UR5 -->
+  <arg name="ur5_control_yaml_file" default="$(find ur_gazebo)/controller/arm_controller_ur5.yaml"/> <!-- Added the UR5 -->
 
   <group ns="$(arg robot_namespace)">
 
@@ -47,6 +49,8 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         <arg name="laser_enabled" default="$(arg laser_enabled)"/>
         <arg name="kinect_enabled" default="$(arg kinect_enabled)"/>
         <arg name="urdf_extras" default="$(arg urdf_extras)"/>
+        <arg name="ur5_enabled" default="$(arg ur5_enabled)"/> <!-- Added the UR5 -->
+        <arg name="manipulator_h_enabled" default="$(arg manipulator_h_enabled)"/> <!-- Added the Robotis Manipulator-H -->
       </include>
         
       <include file="$(find multimaster_launch)/launch/multimaster_gazebo_robot.launch">
@@ -66,11 +70,26 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         <arg name="laser_enabled" value="$(arg laser_enabled)"/>
         <arg name="kinect_enabled" value="$(arg kinect_enabled)"/>
         <arg name="urdf_extras" value="$(arg urdf_extras)"/>
-        <arg name="manipulator_h_enabled" default="$(arg manipulator_h_enabled)"/> <!-- Added the Robotis Manipulator-H -->
+        <arg name="manipulator_h_enabled" value="$(arg manipulator_h_enabled)"/> <!-- Added the Robotis Manipulator-H -->
+        <arg name="ur5_enabled" value="$(arg ur5_enabled)"/> <!-- Added the UR5 -->
       </include>
     </group>
 
-    
+   
+  
+    <!-- Include ros_control configuration for ur5, only used in simulation -->
+    <group if="$(arg ur5_enabled)">
+
+      <!-- Load UR5 controllers -->
+      <rosparam command="load" file="$(arg ur5_control_yaml_file)" />
+      <node name="arm_controller_spawner" pkg="controller_manager" type="spawner" args="arm_controller"/>
+
+      <!-- Fake Calibration -->
+      <node pkg="rostopic" type="rostopic" name="fake_joint_calibration" args="pub calibrated std_msgs/Bool true" />
+  
+    </group>
+
+
 
     <!-- Include ros_control configuration for the Robotis Manipulator-H, only used in simulation -->
     <group if="$(arg manipulator_h_enabled)">

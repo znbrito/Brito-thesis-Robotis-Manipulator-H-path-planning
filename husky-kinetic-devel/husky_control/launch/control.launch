@@ -11,6 +11,8 @@
   <arg name="laser_enabled" default="$(optenv HUSKY_LMS1XX_ENABLED false)"/>
   <arg name="kinect_enabled" default="$(optenv HUSKY_KINECT_ENABLED false)"/>
   <arg name="urdf_extras" default="$(optenv HUSKY_URDF_EXTRAS)"/>
+  <arg name="manipulator_h_enabled" default="false"/> <!-- Added the Robotis Manipulator-H -->
+
 
   <include file="$(find multimaster_launch)/launch/multimaster_robot.launch" if="$(arg multimaster)">
     <arg name="gazebo_interface" value="$(find husky_control)/config/gazebo_interface.yaml" />
@@ -24,6 +26,7 @@
     <arg name="laser_enabled" default="$(arg laser_enabled)"/>
     <arg name="kinect_enabled" default="$(arg kinect_enabled)"/>
     <arg name="urdf_extras" default="$(arg urdf_extras)"/>
+    <arg name="manipulator_h_enabled" default="$(arg manipulator_h_enabled)"/> <!-- Added the Robotis Manipulator-H -->
   </include>
 
   <!-- Load controller configuration -->

@@ -2,6 +2,14 @@
 Changelog for package brito_thesis
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.5.1 (2017-03-29 @ 12:30 AM)
+-----------
+* Integrated the Robotis Manipulator-H with the Husky Kinetic package. Right now only spawning the Husky and the Manipulator-H is working.
+
+* In order to run the simulation, run the following in the terminal:
+ - FIRST WINDOW: roslaunch husky_gazebo husky_empty_world.launch manipulator_h_enabled:=true
+
+
 0.5.0 (2017-03-29 @ 10:12 AM)
 -----------
 * Started to substitute packages from Husky INDIGO to Husky KINETIC. Right now only deleted the indigo packages and downloaded the kinetic ones

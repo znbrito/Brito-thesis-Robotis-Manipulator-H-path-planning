@@ -534,8 +534,7 @@ int main(int argc, char **argv)
   visual_tools.publishTrajectoryLine(my_plan.trajectory_, joint_model_group->getLinkModel("end_link"), joint_model_group, rvt::PURPLE);
   visual_tools.trigger();
   move_group.execute(my_plan);
-  // Wait for the user click on the RVizVisualToolsGui or N if he has the 'Key Tool' selected. Also print a specific message in the terminal
-  visual_tools.prompt("Click 'Next' in the RVizVisualToolsGui or N if you have the 'Key Tool' selected");
+
 
   ros::shutdown();
   return 0;

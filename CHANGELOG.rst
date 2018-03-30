@@ -2,6 +2,17 @@
 Changelog for package brito_thesis
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.5.3 (2017-03-30 @ 3:45 PM)
+-----------
+* Reconfigured the MoveIt! package for the Husky + Manipulator-H integration in order to be fully compatible with the Husky Kinetic package. 
+
+* To test that everything works fine, run the oak tree tests again:
+ - FIRST WINDOW: roslaunch husky_gazebo husky_empty_world.launch manipulator_h_enabled:=true
+ - SECOND WINDOW: rosrun gazebo_ros spawn_model -file /home/josebrito/catkin_ws/src/brito_thesis/manipulator_h_path_planning/meshes/oak_tree/model.sdf -sdf -model oak_tree -y 1
+ - THIRD WINDOW: roslaunch husky_manipulator_h_moveit_config husky_manipulator_h_planning_execution.launch
+ - FOURTH WINDOW: roslaunch manipulator_h_path_planning oak_tree_tests.launch
+
+
 0.5.2 (2017-03-30 @ 0:59 AM)
 -----------
 * Removed the Husky's top plate when spawning the Manipulator-H. In order to do that, disabled the top plate in the following file:
@@ -38,7 +49,7 @@ Changelog for package brito_thesis
  - FIRST WINDOW: roslaunch husky_gazebo husky_empty_world.launch manipulator_h_enabled:=true
  - SECOND WINDOW: rosrun gazebo_ros spawn_model -file /home/josebrito/catkin_ws/src/brito_thesis/manipulator_h_path_planning/meshes/oak_tree/model.sdf -sdf -model oak_tree -y 1
  - THIRD WINDOW: roslaunch husky_manipulator_h_moveit_config husky_manipulator_h_planning_execution.launch
- - FOURTH WINDOW: roslaunch manipulator_h_path_planning husky_manipulator_h_move_group_interface_tutorial.launch
+ - FOURTH WINDOW: roslaunch manipulator_h_path_planning oak_tree_tests.launch
 
 
 0.4.2 (2017-03-28 @ 11:12 AM)

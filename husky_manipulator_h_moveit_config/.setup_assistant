@@ -1,11 +1,11 @@
 moveit_setup_assistant_config:
   URDF:
     package: husky_description
-    relative_path: urdf/description.xacro
+    relative_path: urdf/husky.urdf.xacro
     xacro_args: --inorder manipulator_h_enabled:=true
   SRDF:
     relative_path: config/husky.srdf
   CONFIG:
     author_name: José Nuno Gomes de Brito
     author_email: josenunobrito@gmail.com
-    generated_timestamp: 1522146780
+    generated_timestamp: 1522418511

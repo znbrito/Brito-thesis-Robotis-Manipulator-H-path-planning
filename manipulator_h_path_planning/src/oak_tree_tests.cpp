@@ -141,6 +141,7 @@ int main(int argc, char **argv)
 
   visual_tools.deleteAllMarkers();
   visual_tools.publishText(text_pose, "Oak tree added to simulation", rvt::WHITE, rvt::XLARGE);
+  visual_tools.trigger();
   // Wait for the user click on the RVizVisualToolsGui or N if he has the 'Key Tool' selected. Also print a specific message in the terminal
   visual_tools.prompt("Click 'Next' in the RVizVisualToolsGui or N if you have the 'Key Tool' selected");
 
@@ -176,6 +177,7 @@ int main(int argc, char **argv)
   visual_tools.deleteAllMarkers();
   visual_tools.publishText(text_pose, "Planning to an impossible goal position", rvt::WHITE, rvt::XLARGE);
   visual_tools.publishTrajectoryLine(my_plan.trajectory_, joint_model_group->getLinkModel("end_link"), joint_model_group, rvt::PURPLE);
+  visual_tools.publishAxisLabeled(target_pose1, "pose1");
   visual_tools.trigger();
   move_group.execute(my_plan);
   // Wait for the user click on the RVizVisualToolsGui or N if he has the 'Key Tool' selected. Also print a specific message in the terminal
@@ -200,6 +202,7 @@ int main(int argc, char **argv)
   visual_tools.deleteAllMarkers();
   visual_tools.publishText(text_pose, "Pose goal planning", rvt::WHITE, rvt::XLARGE);
   visual_tools.publishTrajectoryLine(my_plan.trajectory_, joint_model_group->getLinkModel("end_link"), joint_model_group, rvt::PURPLE);
+  visual_tools.publishAxisLabeled(target_pose2, "pose2");
   visual_tools.trigger();
   move_group.execute(my_plan);
   // Wait for the user click on the RVizVisualToolsGui or N if he has the 'Key Tool' selected. Also print a specific message in the terminal
@@ -214,6 +217,7 @@ int main(int argc, char **argv)
 
   visual_tools.deleteAllMarkers();
   visual_tools.publishText(text_pose, "Deleted the oak tree from the world", rvt::WHITE, rvt::XLARGE);
+  visual_tools.trigger();
   ROS_INFO_NAMED("tutorial", "Removed the oak tree from the world");
   // Wait for the user click on the RVizVisualToolsGui or N if he has the 'Key Tool' selected. Also print a specific message in the terminal
   visual_tools.prompt("Click 'Next' in the RVizVisualToolsGui or N if you have the 'Key Tool' selected");
@@ -232,10 +236,9 @@ int main(int argc, char **argv)
   visual_tools.deleteAllMarkers();
   visual_tools.publishText(text_pose, "Pose goal planning again", rvt::WHITE, rvt::XLARGE);
   visual_tools.publishTrajectoryLine(my_plan.trajectory_, joint_model_group->getLinkModel("end_link"), joint_model_group, rvt::CYAN);
+  visual_tools.publishAxisLabeled(target_pose1, "pose1");
   visual_tools.trigger();
   move_group.execute(my_plan);
-  // Wait for the user click on the RVizVisualToolsGui or N if he has the 'Key Tool' selected. Also print a specific message in the terminal
-  visual_tools.prompt("Click 'Next' in the RVizVisualToolsGui or N if you have the 'Key Tool' selected");
 
 
   ros::shutdown();

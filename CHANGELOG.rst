@@ -2,11 +2,19 @@
 Changelog for package brito_thesis
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.6.1 (2017-04-30 @ 6:03 PM)
+-----------
+* Added the package "laser_to_pcl" that tranforms measures from the laser Hokuyo UST-10LX into point clouds. Also installed the package "octomap_server" to make it possible to make a map of point cloud detected by the laser. 
+
+* To test that everything works fine, run the following in a terminal window and use the teleop keys to make the Husky walk around:
+ - FIRST WINDOW: roslaunch husky_gazebo husky_laser_tests.launch vertical_laser_enabled:=true
+
+
 0.6.0 (2017-04-30 @ 4:29 PM)
 -----------
 * Added the laser Hokuyo UST-10LX to the simulation. This laser is on the top of the AGROB tower. Used the "hokuyo.dae" file from the "robot_description" package inside the "agrob_simulation-master" package for the geometry tag of the laser. Possible modifications to this file can happen.
 
-* To test that everything works fine, run the oak tree tests again:
+* To test that everything works fine, run the following in a terminal window:
  - FIRST WINDOW: roslaunch husky_gazebo husky_empty_world.launch vertical_laser_enabled:=true
 
 

@@ -5,6 +5,7 @@
   <arg name="kinect_enabled" default="false"/>
   <arg name="manipulator_h_enabled" default="false"/> <!-- Added the Robotis Manipulator-H -->
   <arg name="ur5_enabled" default="false"/> <!-- Added the UR5 -->
+  <arg name="vertical_laser_enabled" default="false"/> <!-- Added the vertical laser Hokuyo UST-10LX -->
 
   <!-- Standalone launcher to visualize the robot model. -->
   <include file="$(find husky_description)/launch/description.launch">
@@ -12,6 +13,7 @@
     <arg name="kinect_enabled" value="$(arg kinect_enabled)"/>
     <arg name="manipulator_h_enabled" value="$(arg manipulator_h_enabled)"/> <!-- Added the Robotis Manipulator-H -->
     <arg name="ur5_enabled" value="$(arg ur5_enabled)"/> <!-- Added the UR5 -->
+    <arg name="vertical_laser_enabled" value="$(arg vertical_laser_enabled)"/> <!-- Added the vertical laser Hokuyo UST-10LX -->
   </include>
 
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">

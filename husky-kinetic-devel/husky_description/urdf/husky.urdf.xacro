@@ -333,7 +333,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         </ray>
         
         <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
-          <topicName>laser_vertical</topicName>
+          <topicName>vertical_laser</topicName>
           <frameName>hokuyo_link</frameName>
         </plugin>
       

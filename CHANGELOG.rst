@@ -2,6 +2,14 @@
 Changelog for package brito_thesis
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.6.0 (2017-04-30 @ 4:29 PM)
+-----------
+* Added the laser Hokuyo UST-10LX to the simulation. This laser is on the top of the AGROB tower. Used the "hokuyo.dae" file from the "robot_description" package inside the "agrob_simulation-master" package for the geometry tag of the laser. Possible modifications to this file can happen.
+
+* To test that everything works fine, run the oak tree tests again:
+ - FIRST WINDOW: roslaunch husky_gazebo husky_empty_world.launch vertical_laser_enabled:=true
+
+
 0.5.3 (2017-03-30 @ 3:45 PM)
 -----------
 * Reconfigured the MoveIt! package for the Husky + Manipulator-H integration in order to be fully compatible with the Husky Kinetic package. 

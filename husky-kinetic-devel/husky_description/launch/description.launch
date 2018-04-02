@@ -31,6 +31,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <arg name="urdf_extras" default="$(optenv HUSKY_URDF_EXTRAS)"/>
   <arg name="manipulator_h_enabled" default="false"/> <!-- Added the Robotis Manipulator-H -->
   <arg name="ur5_enabled" default="false"/> <!-- Added the UR5 -->
+  <arg name="vertical_laser_enabled" default="false"/> <!-- Added the vertical laser Hokuyo UST-10LX -->
 
   <param name="robot_description" command="$(find xacro)/xacro '$(find husky_description)/urdf/husky.urdf.xacro'
     --inorder
@@ -40,6 +41,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     urdf_extras:=$(arg urdf_extras)
     manipulator_h_enabled:=$(arg manipulator_h_enabled)
     ur5_enabled:=$(arg ur5_enabled) 
-    " /> <!-- Added the Robotis Manipulator-H and UR5 -->
+    vertical_laser_enabled:=$(arg vertical_laser_enabled)
+    " /> <!-- Added the Robotis Manipulator-H, UR5 and the vertical laser Hokuyo UST-10LX -->
 
 </launch>

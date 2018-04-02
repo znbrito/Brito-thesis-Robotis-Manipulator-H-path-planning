@@ -47,6 +47,10 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
   <xacro:arg name="ur5_enabled" default="false"/> <!-- Added the UR5 -->
   <xacro:include filename="$(find ur_description)/urdf/ur5.urdf.xacro" />
+
+
+
+  <xacro:arg name="vertical_laser_enabled" default="false"/> <!-- Added the vertical laser Hokuyo UST-10LX -->
   
 
 
@@ -275,6 +279,79 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
       <origin xyz="0 0 0.00375" rpy="0.0 0.0 1.57" />
     </joint>
 
+  </xacro:if>
+
+
+  <!-- Added the vertical laser Hokuyo UST-10LX -->
+  <xacro:if value="$(arg vertical_laser_enabled)">
+    
+    <link name="hokuyo_link">
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+	  <box size="0.001 0.001 0.001"/> <!-- Originally "0 0 0" but it causes Gazebo to crash -->
+        </geometry>
+      </collision>
+
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://husky_gazebo/meshes/hokuyo.dae"/> <!-- Previously using the file "hokuyo.dae" from the "robot_description" package inside the "agrob_simulator-master" package-->
+        </geometry>
+      </visual>
+
+      <inertial>
+        <mass value="1e-5" />
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <inertia ixx="1e-5" ixy="0" ixz="0" iyy="1e-5" iyz="0" izz="1e-5" />
+      </inertial>
+    </link>  
+  
+    <gazebo reference="hokuyo_link">  
+      <sensor name="laser" type="ray">
+        <pose>0.01 0 0.0175 0 0 0</pose>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>683</samples>
+              <resolution>1</resolution>
+              <min_angle>-2.09439510239</min_angle>
+              <max_angle>2.09439510239</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.2</min>
+            <max>4</max>
+            <resolution>0.01</resolution>
+          </range>
+        
+          <!--<noise>
+            <type>gaussian</type>
+            <mean>0.0</mean>
+            <stddev>0.01</stddev>
+          </noise>-->
+        </ray>
+        
+        <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
+          <topicName>laser_vertical</topicName>
+          <frameName>hokuyo_link</frameName>
+        </plugin>
+      
+        <always_on>1</always_on>
+        <update_rate>10</update_rate>
+        <visualize>true</visualize>
+      </sensor>
+  
+    </gazebo> 
+
+    <joint name="vertical_laser_base" type="fixed">
+      <origin
+        xyz="0.34 0.07 0.94"
+        rpy="0 1.33 0" /> <!-- Originally "0 1.33 -0.1" -->  
+      <parent link="base_link" />
+      <child link="hokuyo_link" />
+    </joint>
+    
   </xacro:if>
 
 

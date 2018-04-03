@@ -29,25 +29,24 @@
   </include> 
 
   <!-- RViz file launch -->
-  <include file="$(find husky_viz)/launch/view_model.launch">
+  <!--<include file="$(find husky_viz)/launch/view_model.launch">
     <arg name="laser_enabled" value="$(arg laser_enabled)"/>
-    <arg name="manipulator_h_enabled" value="$(arg manipulator_h_enabled)"/> <!-- Added the Robotis Manipulator-H -->
-    <arg name="ur5_enabled" value="$(arg ur5_enabled)"/> <!-- Added the UR5 -->
-    <arg name="vertical_laser_enabled" value="$(arg vertical_laser_enabled)"/> <!-- Added the vertical laser Hokuyo UST-10LX -->
-  </include>
-
+    <arg name="manipulator_h_enabled" value="$(arg manipulator_h_enabled)"/> --> <!-- Added the Robotis Manipulator-H -->
+    <!--<arg name="ur5_enabled" value="$(arg ur5_enabled)"/> --> <!-- Added the UR5 -->
+    <!--<arg name="vertical_laser_enabled" value="$(arg vertical_laser_enabled)"/> --> <!-- Added the vertical laser Hokuyo UST-10LX -->
+  <!--</include>-->
 
   <!-- Manual control using teleop keyboard keys -->
   <node name="husky_manual_control_node" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" output="screen">
     <remap from="cmd_vel" to="husky_velocity_controller/cmd_vel"/>
   </node>
 
-  <!-- Spawn an oak tree in (x,y,z)=(0,-1,0) -->
-  <node name="tree_node" pkg="gazebo_ros" type="spawn_model" args="-file /home/josebrito/catkin_ws/src/brito_thesis/manipulator_h_path_planning/meshes/oak_tree/model.sdf -sdf -model oak_tree -y 1"/>
+  <!-- Spawn an oak tree in (x,y,z)=(0,2,0) -->
+  <node name="tree_node" pkg="gazebo_ros" type="spawn_model" args="-file /home/josebrito/catkin_ws/src/brito_thesis/manipulator_h_path_planning/meshes/oak_tree/model.sdf -sdf -model oak_tree -y 2"/>
 
   <!-- Load node that converts laser distances into point clouds -->
   <node name="laser_to_pcl_node" pkg="laser_to_pcl" type="laser_to_pcl_node" output="screen">
-    <remap from="lidar1/scan" to="vertical_laser"/>
+    <remap from="lidar1/scan" to="vertical_laser"/> <!-- Topic to be read by the node -->
   </node>
 
   <!-- Load node that converts point clouds into a map -->
@@ -70,7 +69,7 @@
     <param name="pointcloud_max_z" type="double" value="1.5" />
     <param name="occupancy_min_z" type="double" value="-1.0" />
     <param name="occupancy_max_z" type="double" value="1.5" />
-    <remap from="cloud_in" to="pcl_v" />
+    <remap from="cloud_in" to="pcl_v" /> <!-- Topic to be read by the node, which is the output topic of the "laser_to_pcl_node" -->
   </node>
 
 </launch>

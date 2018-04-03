@@ -28,4 +28,10 @@
     <arg name="config" value="true"/>
   </include>
 
+  <!-- Load the sensor configuration for real time environment mapping, making it possible for the planner to avoid environment obstacles -->
+  <arg name="frame" value="odom"/>
+  <include file="$(find husky_manipulator_h_moveit_config)/launch/sensor_manager.launch.xml"> 
+    <arg name="frame" value="$(arg frame)"/>
+  </include>  
+
 </launch>

@@ -2,7 +2,34 @@
 Changelog for package brito_thesis
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-0.6.1 (2017-04-30 @ 6:03 PM)
+0.6.2 (2017-04-03 @ 1:34 PM)
+-----------
+
+* MoveIt! can now automatically map objects from the world as collision objects, using the laser Hokuyo UST-10LX.
+
+* Modified the "husky_manipulator_h_moveit_config":
+ - Launched the setup assistant and also used "vertical_laser_enabled:=true", then ran again the collision matrix in order to make MoveIt! aware of the laser and its frames
+ - In file "husky.srdf", inside the "config" folder:
+   - Altered the virtual joint type from "fixed" to "planar" because now path planning will be done considering Husky's movements; Check the MoveIt! tutorial in the following link:
+      http://docs.ros.org/kinetic/api/moveit_tutorials/html/doc/setup_assistant/setup_assistant_tutorial.html#step-3-add-virtual-joints
+   - Altered parent frame of the virtual joint from "world" to "odom"
+   - Added the file "config/sensors_Hokuyo_UST_10LX_pointcloud2.yaml", which configures MoveIt! to automatically map obstacles using the Hokuyo UST-10LX laser, more specifically, using the pointCloud2 map which is is the output of the "octomap_server" topic. Check this link for more information: 
+      http://docs.ros.org/kinetic/api/moveit_tutorials/html/doc/pr2_tutorials/planning/src/doc/perception_configuration.html
+ - In file "sensor_manager.launch.xml", inside the "launch" folder:
+   - Now loading the sensor plugin to the ROS parameter server
+   - Watchout for the fact that "odom_combined" is now the default octomap's frame but it is configured in "husky_manipulator_h_planning_execution.launch" to be the "odom" frame
+ - In file "husky_manipulator_h_planning_execution.launch" included "sensor_manager.launch.xml" file.
+  
+* Modified the "husky_gazebo" package: 
+  - Removed both static tfs from "spawn_husky.launch" file inside the "husky_gazebo" package because they are not needed;
+  - In the "husky_laser_tests.launch", disabled the RViz visualization, since now all RViz visualizations are done by the RViz window launched by MoveIt! when launching the "husky_manipulator_h_planning_execution.launch" inside the "husky_manipulator_h_moveit_config" package.
+
+* Move around the tree in order to map her and make MoveIt! interpret her as a collision object
+ - FIRST WINDOW: roslaunch husky_gazebo husky_laser_tests.launch vertical_laser_enabled:=true manipulator_h_enabled:=true
+ - SECOND WINDOW: roslaunch husky_manipulator_h_moveit_config husky_manipulator_h_planning_execution.launch 
+
+
+0.6.1 (2017-04-02 @ 6:03 PM)
 -----------
 * Added the package "laser_to_pcl" that tranforms measures from the laser Hokuyo UST-10LX into point clouds. Also installed the package "octomap_server" to make it possible to make a map of point cloud detected by the laser. 
 
@@ -10,7 +37,7 @@ Changelog for package brito_thesis
  - FIRST WINDOW: roslaunch husky_gazebo husky_laser_tests.launch vertical_laser_enabled:=true
 
 
-0.6.0 (2017-04-30 @ 4:29 PM)
+0.6.0 (2017-04-02 @ 4:29 PM)
 -----------
 * Added the laser Hokuyo UST-10LX to the simulation. This laser is on the top of the AGROB tower. Used the "hokuyo.dae" file from the "robot_description" package inside the "agrob_simulation-master" package for the geometry tag of the laser. Possible modifications to this file can happen.
 

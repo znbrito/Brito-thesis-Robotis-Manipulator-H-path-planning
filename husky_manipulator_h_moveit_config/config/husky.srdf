@@ -24,13 +24,14 @@
     <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
     <end_effector name="end_effector" parent_link="end_link" group="arm_group" />
     <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
-    <virtual_joint name="virtual_joint" type="fixed" parent_frame="world" child_link="base_link" />
+    <virtual_joint name="virtual_joint" type="planar" parent_frame="odom" child_link="base_link" />
     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
     <disable_collisions link1="base_link" link2="box" reason="Adjacent" />
     <disable_collisions link1="base_link" link2="cylinder" reason="Never" />
     <disable_collisions link1="base_link" link2="front_bumper_link" reason="Adjacent" />
     <disable_collisions link1="base_link" link2="front_left_wheel_link" reason="Adjacent" />
     <disable_collisions link1="base_link" link2="front_right_wheel_link" reason="Adjacent" />
+    <disable_collisions link1="base_link" link2="hokuyo_link" reason="Adjacent" />
     <disable_collisions link1="base_link" link2="link1" reason="Never" />
     <disable_collisions link1="base_link" link2="link2" reason="Never" />
     <disable_collisions link1="base_link" link2="link3" reason="Never" />
@@ -45,6 +46,7 @@
     <disable_collisions link1="box" link2="front_bumper_link" reason="Never" />
     <disable_collisions link1="box" link2="front_left_wheel_link" reason="Never" />
     <disable_collisions link1="box" link2="front_right_wheel_link" reason="Never" />
+    <disable_collisions link1="box" link2="hokuyo_link" reason="Never" />
     <disable_collisions link1="box" link2="link1" reason="Never" />
     <disable_collisions link1="box" link2="link2" reason="Never" />
     <disable_collisions link1="box" link2="link3" reason="Never" />
@@ -56,6 +58,7 @@
     <disable_collisions link1="cylinder" link2="front_bumper_link" reason="Never" />
     <disable_collisions link1="cylinder" link2="front_left_wheel_link" reason="Never" />
     <disable_collisions link1="cylinder" link2="front_right_wheel_link" reason="Never" />
+    <disable_collisions link1="cylinder" link2="hokuyo_link" reason="Never" />
     <disable_collisions link1="cylinder" link2="link1" reason="Adjacent" />
     <disable_collisions link1="cylinder" link2="link2" reason="Never" />
     <disable_collisions link1="cylinder" link2="link3" reason="Never" />
@@ -67,6 +70,7 @@
     <disable_collisions link1="end_link" link2="front_bumper_link" reason="Never" />
     <disable_collisions link1="end_link" link2="front_left_wheel_link" reason="Never" />
     <disable_collisions link1="end_link" link2="front_right_wheel_link" reason="Never" />
+    <disable_collisions link1="end_link" link2="hokuyo_link" reason="Never" />
     <disable_collisions link1="end_link" link2="link4" reason="Never" />
     <disable_collisions link1="end_link" link2="link5" reason="Never" />
     <disable_collisions link1="end_link" link2="link6" reason="Adjacent" />
@@ -75,6 +79,7 @@
     <disable_collisions link1="end_link" link2="rear_right_wheel_link" reason="Never" />
     <disable_collisions link1="front_bumper_link" link2="front_left_wheel_link" reason="Never" />
     <disable_collisions link1="front_bumper_link" link2="front_right_wheel_link" reason="Never" />
+    <disable_collisions link1="front_bumper_link" link2="hokuyo_link" reason="Never" />
     <disable_collisions link1="front_bumper_link" link2="link1" reason="Never" />
     <disable_collisions link1="front_bumper_link" link2="link2" reason="Never" />
     <disable_collisions link1="front_bumper_link" link2="link3" reason="Never" />
@@ -87,6 +92,7 @@
     <disable_collisions link1="front_bumper_link" link2="top_chassis_link" reason="Default" />
     <disable_collisions link1="front_bumper_link" link2="user_rail_link" reason="Never" />
     <disable_collisions link1="front_left_wheel_link" link2="front_right_wheel_link" reason="Never" />
+    <disable_collisions link1="front_left_wheel_link" link2="hokuyo_link" reason="Never" />
     <disable_collisions link1="front_left_wheel_link" link2="link1" reason="Never" />
     <disable_collisions link1="front_left_wheel_link" link2="link2" reason="Never" />
     <disable_collisions link1="front_left_wheel_link" link2="link3" reason="Never" />
@@ -98,6 +104,7 @@
     <disable_collisions link1="front_left_wheel_link" link2="rear_right_wheel_link" reason="Never" />
     <disable_collisions link1="front_left_wheel_link" link2="top_chassis_link" reason="Never" />
     <disable_collisions link1="front_left_wheel_link" link2="user_rail_link" reason="Never" />
+    <disable_collisions link1="front_right_wheel_link" link2="hokuyo_link" reason="Never" />
     <disable_collisions link1="front_right_wheel_link" link2="link1" reason="Never" />
     <disable_collisions link1="front_right_wheel_link" link2="link2" reason="Never" />
     <disable_collisions link1="front_right_wheel_link" link2="link3" reason="Never" />
@@ -109,6 +116,17 @@
     <disable_collisions link1="front_right_wheel_link" link2="rear_right_wheel_link" reason="Never" />
     <disable_collisions link1="front_right_wheel_link" link2="top_chassis_link" reason="Never" />
     <disable_collisions link1="front_right_wheel_link" link2="user_rail_link" reason="Never" />
+    <disable_collisions link1="hokuyo_link" link2="link1" reason="Never" />
+    <disable_collisions link1="hokuyo_link" link2="link2" reason="Never" />
+    <disable_collisions link1="hokuyo_link" link2="link3" reason="Never" />
+    <disable_collisions link1="hokuyo_link" link2="link4" reason="Never" />
+    <disable_collisions link1="hokuyo_link" link2="link5" reason="Never" />
+    <disable_collisions link1="hokuyo_link" link2="link6" reason="Never" />
+    <disable_collisions link1="hokuyo_link" link2="rear_bumper_link" reason="Never" />
+    <disable_collisions link1="hokuyo_link" link2="rear_left_wheel_link" reason="Never" />
+    <disable_collisions link1="hokuyo_link" link2="rear_right_wheel_link" reason="Never" />
+    <disable_collisions link1="hokuyo_link" link2="top_chassis_link" reason="Never" />
+    <disable_collisions link1="hokuyo_link" link2="user_rail_link" reason="Never" />
     <disable_collisions link1="link1" link2="link2" reason="Adjacent" />
     <disable_collisions link1="link1" link2="link3" reason="Never" />
     <disable_collisions link1="link1" link2="link4" reason="Never" />

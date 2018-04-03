@@ -1,13 +1,17 @@
 <launch>
 
-  <!-- This file makes it easy to include the settings for sensor managers -->  
+  <!-- Configure the sensor source for MoveIt! to use -->
+  <rosparam command="load" file="$(find husky_manipulator_h_moveit_config)/config/sensors_Hokuyo_UST_10LX_pointcloud2.yaml" />
+
+  <!-- The default frame for the octomap monitor -->
+  <arg name="frame" default="odom_combined"/>
 
   <!-- Params for the octomap monitor -->
-  <!--  <param name="octomap_frame" type="string" value="some frame in which the robot moves" /> -->
+  <param name="octomap_frame" type="string" value="$(arg frame)" />
   <param name="octomap_resolution" type="double" value="0.025" />
   <param name="max_range" type="double" value="5.0" />
 
-  <!-- Load the robot specific sensor manager; this sets the moveit_sensor_manager ROS parameter -->
+  <!-- Load the robot specific sensor manager: THIS FILE IS EMPTY BUT NEEDED -->
   <arg name="moveit_sensor_manager" default="husky" />
   <include file="$(find husky_manipulator_h_moveit_config)/launch/$(arg moveit_sensor_manager)_moveit_sensor_manager.launch.xml" />
   

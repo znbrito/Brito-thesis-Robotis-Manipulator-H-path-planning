@@ -60,7 +60,7 @@ int main(int argc, char **argv)
   // and trajectories in Rviz. It is important to define the frame in which the objects
   // are going to be visualized
   namespace rvt = rviz_visual_tools;
-  moveit_visual_tools::MoveItVisualTools visual_tools("base_link"); // OR "odom"
+  moveit_visual_tools::MoveItVisualTools visual_tools("map"); // OR "odom"
   visual_tools.deleteAllMarkers();
 
   // Remote control is an introspection tool that allows users to step through a high level script
@@ -133,6 +133,14 @@ int main(int argc, char **argv)
 
   // Now, let's add the collision object into the world
   ROS_INFO("Added an oak tree object into the world");
+
+
+
+  //ROS_INFO_NAMED("tutorial", "Planning frame: %s", oak_tree.header.frame_id);
+
+
+
+
   planning_scene_interface.addCollisionObjects(collision_objects);
 
 

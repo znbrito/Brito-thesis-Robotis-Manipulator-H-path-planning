@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+
+  <node name="laser_tests_node" pkg="manipulator_h_path_planning" type="laser_tests" respawn="false" output="screen" args="joint_states:=/robotis_manipulator_h/joint_states"/>
+
+</launch>

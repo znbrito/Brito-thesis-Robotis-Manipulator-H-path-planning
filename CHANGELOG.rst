@@ -2,6 +2,27 @@
 Changelog for package brito_thesis
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.6.3 (2017-04-03 @ 8:16 PM)
+-----------
+
+* Added a path planning script to make it possible to test if the manipulator can do path planning before and after detecting a tree with the laser. Altered the "husky_laser_tests.launch" to not spawn the tree in the launch file as the test script needs the tree not to be spawned at the beginning of the simulation.
+
+* In order to test the code, run the following in a terminal:
+ - FIRST WINDOW: roslaunch husky_gazebo husky_laser_tests.launch vertical_laser_enabled:=true manipulator_h_enabled:=true
+ - SECOND WINDOW: roslaunch husky_manipulator_h_moveit_config husky_manipulator_h_planning_execution.launch
+ - THIRD WINDOW: roslaunch manipulator_h_path_planning laser_tests.launch 
+ - Only run the FOURTH WINDOW after the path planning from the THIRD WINDOW ended and, after that, after you manually plan the manipulator to its "home_position". After running the FOURTH WINDOW, run THIRD WINDOW again.
+ - FOURTH WINDOW: rosrun gazebo_ros spawn_model -file /home/josebrito/catkin_ws/src/brito_thesis/manipulator_h_path_planning/meshes/oak_tree/model.sdf -sdf -model oak_tree -y 1
+
+* Also some experiments with a false localization node that adds a "/map" frame to the world. For that I installed the "fake_localization" package from Synaptic and started to make changes in the following files:
+ - Added the node in the "husky_laser_tests.launch" inside the "husly_gazebo" package
+ - Altered the parent frame from "odom" to "map" in the virtual joint tag inside the "husky.srdf" file inside the "husky_manipulator_h_moveit_config" package
+ - In RViz, change the global frame to "map"
+ - In the file "laser_tests.cpp" I altered the visual_tools frame from "odom" to "map"
+
+* These changes were not yet commited because I have to check if the frame "map" is working correctly
+
+
 0.6.2 (2017-04-03 @ 1:34 PM)
 -----------
 

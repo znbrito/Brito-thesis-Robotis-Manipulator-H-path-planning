@@ -90,6 +90,17 @@ install/local/fast: install/local
 
 .PHONY : install/local/fast
 
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: install/strip
+
+.PHONY : install/strip/fast
+
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -121,17 +132,6 @@ test:
 test/fast: test
 
 .PHONY : test/fast
-
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: install/strip
-
-.PHONY : install/strip/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -1349,6 +1349,19 @@ tf2_msgs_generate_messages_lisp/fast:
 .PHONY : tf2_msgs_generate_messages_lisp/fast
 
 #=============================================================================
+# Target rules for targets named laser_tests
+
+# Build rule for target.
+laser_tests: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 laser_tests
+.PHONY : laser_tests
+
+# fast build rule for target.
+laser_tests/fast:
+	$(MAKE) -f CMakeFiles/laser_tests.dir/build.make CMakeFiles/laser_tests.dir/build
+.PHONY : laser_tests/fast
+
+#=============================================================================
 # Target rules for targets named tf2_msgs_generate_messages_nodejs
 
 # Build rule for target.
@@ -1478,6 +1491,33 @@ src/husky_manipulator_h_move_group_interface_tutorial.s: src/husky_manipulator_h
 src/husky_manipulator_h_move_group_interface_tutorial.cpp.s:
 	$(MAKE) -f CMakeFiles/husky_manipulator_h_move_group_interface_tutorial.dir/build.make CMakeFiles/husky_manipulator_h_move_group_interface_tutorial.dir/src/husky_manipulator_h_move_group_interface_tutorial.cpp.s
 .PHONY : src/husky_manipulator_h_move_group_interface_tutorial.cpp.s
+
+src/laser_tests.o: src/laser_tests.cpp.o
+
+.PHONY : src/laser_tests.o
+
+# target to build an object file
+src/laser_tests.cpp.o:
+	$(MAKE) -f CMakeFiles/laser_tests.dir/build.make CMakeFiles/laser_tests.dir/src/laser_tests.cpp.o
+.PHONY : src/laser_tests.cpp.o
+
+src/laser_tests.i: src/laser_tests.cpp.i
+
+.PHONY : src/laser_tests.i
+
+# target to preprocess a source file
+src/laser_tests.cpp.i:
+	$(MAKE) -f CMakeFiles/laser_tests.dir/build.make CMakeFiles/laser_tests.dir/src/laser_tests.cpp.i
+.PHONY : src/laser_tests.cpp.i
+
+src/laser_tests.s: src/laser_tests.cpp.s
+
+.PHONY : src/laser_tests.s
+
+# target to generate assembly for a file
+src/laser_tests.cpp.s:
+	$(MAKE) -f CMakeFiles/laser_tests.dir/build.make CMakeFiles/laser_tests.dir/src/laser_tests.cpp.s
+.PHONY : src/laser_tests.cpp.s
 
 src/manipulator_h_kinematic_model_tutorial.o: src/manipulator_h_kinematic_model_tutorial.cpp.o
 
@@ -1650,6 +1690,7 @@ help:
 	@echo "... install"
 	@echo "... rebuild_cache"
 	@echo "... install/local"
+	@echo "... install/strip"
 	@echo "... _catkin_empty_exported_target"
 	@echo "... visualization_msgs_generate_messages_eus"
 	@echo "... actionlib_msgs_generate_messages_nodejs"
@@ -1744,11 +1785,11 @@ help:
 	@echo "... tf2_msgs_generate_messages_cpp"
 	@echo "... tf2_msgs_generate_messages_eus"
 	@echo "... tf2_msgs_generate_messages_lisp"
+	@echo "... laser_tests"
 	@echo "... tf2_msgs_generate_messages_nodejs"
 	@echo "... tf_generate_messages_cpp"
 	@echo "... manipulator_h_move_group_interface_tutorial"
 	@echo "... oak_tree_tests"
-	@echo "... install/strip"
 	@echo "... gmock"
 	@echo "... gmock_main"
 	@echo "... gtest"
@@ -1756,6 +1797,9 @@ help:
 	@echo "... src/husky_manipulator_h_move_group_interface_tutorial.o"
 	@echo "... src/husky_manipulator_h_move_group_interface_tutorial.i"
 	@echo "... src/husky_manipulator_h_move_group_interface_tutorial.s"
+	@echo "... src/laser_tests.o"
+	@echo "... src/laser_tests.i"
+	@echo "... src/laser_tests.s"
 	@echo "... src/manipulator_h_kinematic_model_tutorial.o"
 	@echo "... src/manipulator_h_kinematic_model_tutorial.i"
 	@echo "... src/manipulator_h_kinematic_model_tutorial.s"

@@ -60,7 +60,7 @@ int main(int argc, char **argv)
   // and trajectories in Rviz. It is important to define the frame in which the objects
   // are going to be visualized
   namespace rvt = rviz_visual_tools;
-  moveit_visual_tools::MoveItVisualTools visual_tools("map"); // OR "odom"
+  moveit_visual_tools::MoveItVisualTools visual_tools("odom");
   visual_tools.deleteAllMarkers();
 
   // Remote control is an introspection tool that allows users to step through a high level script

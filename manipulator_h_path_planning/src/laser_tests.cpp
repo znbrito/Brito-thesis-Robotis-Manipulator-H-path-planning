@@ -21,6 +21,8 @@
 
 #include <geometric_shapes/shape_operations.h>
 
+#include <moveit_msgs/GetPlanningScene.h>
+
 
 
 int main(int argc, char **argv)
@@ -40,6 +42,7 @@ int main(int argc, char **argv)
 
 
 
+
   // Visualization
   namespace rvt = rviz_visual_tools;
   moveit_visual_tools::MoveItVisualTools visual_tools("odom");
@@ -52,7 +55,14 @@ int main(int argc, char **argv)
 
 
 
-  // First, save the actual pose of the robot
+  // First, let's plan to the home position
+  move_group.setNamedTarget("home_pose");
+  move_group.move();
+
+
+
+
+  // Now, save the actual pose of the robot
   geometry_msgs::Pose actual_pose = move_group.getCurrentPose().pose;
 
   // Create a target pose goal
@@ -70,8 +80,8 @@ int main(int argc, char **argv)
   target_pose1.orientation.y = aux.getY();
   target_pose1.orientation.z = aux.getZ();
 
-  target_pose1.position.x = -0.2;
-  target_pose1.position.y = 0.7;
+  target_pose1.position.x = 0;
+  target_pose1.position.y = 0.65;
   target_pose1.position.z = 0.7;
   move_group.setPoseTarget(target_pose1);
 
@@ -83,6 +93,7 @@ int main(int argc, char **argv)
 
   // Wait for the user click on the RVizVisualToolsGui or N if he has the 'Key Tool' selected. Also print a specific message in the terminal
   visual_tools.prompt("Click 'Next' in the RVizVisualToolsGui or N if you have the 'Key Tool' selected");
+
 
 
 
@@ -108,12 +119,161 @@ int main(int argc, char **argv)
 
 
 
+
+  // Adding object to the environment
+  moveit_msgs::CollisionObject collision_object;
+  collision_object.header.frame_id = move_group.getPlanningFrame();
+
+  // The id of the object is used to identify it.
+  collision_object.id = "box";
+
+  // Define a box to add to the world.
+  shape_msgs::SolidPrimitive primitive;
+  primitive.type = primitive.BOX;
+  primitive.dimensions.resize(3);
+  primitive.dimensions[0] = 0.005;
+  primitive.dimensions[1] = 0.005;
+  primitive.dimensions[2] = 0.005;
+
+  //Define a pose for the box (specified relative to frame_id)
+  geometry_msgs::Pose box_pose;
+
+  // Re-use the predifined quaternion
+  aux.setW(1);
+  aux.setX(0);
+  aux.setY(0);
+  aux.setZ(0);
+  aux.normalize();
+
+  box_pose.orientation.w = aux.getW();
+  box_pose.orientation.x = aux.getX();
+  box_pose.orientation.y = aux.getY();
+  box_pose.orientation.z = aux.getZ();
+
+  box_pose.position.x = target_pose1.position.x;
+  box_pose.position.y = target_pose1.position.y;
+  box_pose.position.z = target_pose1.position.z;
+
+  collision_object.primitives.push_back(primitive);
+  collision_object.primitive_poses.push_back(box_pose);
+  collision_object.operation = collision_object.ADD;
+
+  // Add object into the world
+  ros::Publisher planning_scene_diff_publisher = node_handle.advertise<moveit_msgs::PlanningScene>("planning_scene", 1);
+
+  moveit_msgs::PlanningScene planning_scene_add;
+  planning_scene_add.world.collision_objects.push_back(collision_object);
+  planning_scene_add.is_diff = true;
+  planning_scene_diff_publisher.publish(planning_scene_add);
+
+
+
+
+  ros::ServiceClient client = node_handle.serviceClient<moveit_msgs::GetPlanningScene>("get_planning_scene");
+
+  moveit_msgs::GetPlanningScene srv;
+  srv.request.components.components = moveit_msgs::PlanningSceneComponents::WORLD_OBJECT_NAMES;
+
+  // Wait until box is published in RViz
+  bool object_in_world = false;
+  while(!object_in_world) {
+    ROS_INFO("Waiting for box to appear...");
+    if (client.call(srv)) {
+      for (int i = 0; i < (int)srv.response.scene.world.collision_objects.size(); ++i) {
+        if (srv.response.scene.world.collision_objects[i].id == "box") {
+          object_in_world = true;
+          ROS_INFO("Box has appeared!");
+        }
+      }
+    }
+    else {
+      ROS_WARN("Failed to call service /get_planning_scene");
+    }
+  }
+  // Box now exists in MoveIt!
+
+
+
+
+  moveit_msgs::PlanningScene currentScene;
+  moveit_msgs::PlanningScene newSceneDiff;
+
+  moveit_msgs::GetPlanningScene scene_srv;
+  scene_srv.request.components.components = scene_srv.request.components.ALLOWED_COLLISION_MATRIX;
+
+  if(!client.call(scene_srv)) {
+    ROS_WARN("Failed to call service /get_planning_scene");
+  }
+  else {
+    //ROS_INFO_STREAM("Initial scene!");
+    currentScene = scene_srv.response.scene;
+    moveit_msgs::AllowedCollisionMatrix currentACM = currentScene.allowed_collision_matrix;
+
+    //ROS_INFO_STREAM("size of acm_entry_names before " << currentACM.entry_names.size());
+    //ROS_INFO_STREAM("size of acm_entry_values before " << currentACM.entry_values.size());
+    //ROS_INFO_STREAM("size of acm_entry_values[0].entries before " << currentACM.entry_values[0].enabled.size());
+
+
+    // Filling the AllowedCollisionMatrix message
+
+    // Add a new name called "box" to the collision matrix
+    currentACM.entry_names.push_back("box");
+
+    moveit_msgs::AllowedCollisionEntry entry;
+    entry.enabled.resize(currentACM.entry_names.size()); // "currentACM.entry_names" already has the updated size
+
+    // Allow collisions with every link -> entry.enabled[i] = TRUE; and resize the "enabled" vector inside the "AllowedCollisionEntry" variable
+    for(int i = 0; i < entry.enabled.size(); i++) {
+      entry.enabled[i] = true;
+    }
+
+    // Extend the last column of the matrix for the "box" object
+    for(int i = 0; i < currentACM.entry_values.size(); i++) {
+      currentACM.entry_values[i].enabled.push_back(true);
+    }
+
+    // Add new row to allowed collision matrix, for the "box" object that will be added
+    currentACM.entry_values.push_back(entry);
+
+    // Update and publish the new planning scene with the only thing that changed: the collision matrix
+    newSceneDiff.is_diff = true;
+    newSceneDiff.allowed_collision_matrix = currentACM;
+    planning_scene_diff_publisher.publish(newSceneDiff);
+
+
+    //for (int i = 0; i < currentACM.entry_names.size(); i++) {
+    //  ROS_INFO_STREAM("Linha " << i << ": " << currentACM.entry_values[i] << "\n");
+    //}
+    //ROS_INFO_STREAM("\n\n\n Size of entry_values " << currentACM.entry_values.size() << "\n");
+    //ROS_INFO_STREAM("Size of entry_names " << currentACM.entry_names.size() << "\n\n\n");
+  }
+
+
+
+  // Show the updated planning scene
+  //if(!client.call(scene_srv)) {
+  //  ROS_WARN("Failed to call service /get_planning_scene");
+  //}
+  //else {
+  //  ROS_INFO_STREAM("Modified scene!");
+  //  currentScene = scene_srv.response.scene;
+  //  moveit_msgs::AllowedCollisionMatrix currentACM = currentScene.allowed_collision_matrix;
+
+  //  ROS_INFO_STREAM("size of acm_entry_names after " << currentACM.entry_names.size());
+  //  ROS_INFO_STREAM("size of acm_entry_values after " << currentACM.entry_values.size());
+  //  ROS_INFO_STREAM("size of acm_entry_values[0].entries after " << currentACM.entry_values[0].enabled.size());
+  //}
+
+
+
+
   // After path planning, print the goal position
   visual_tools.deleteAllMarkers();
   visual_tools.publishAxisLabeled(target_pose1, "goal");
 
   // Wait for the user click on the RVizVisualToolsGui or N if he has the 'Key Tool' selected. Also print a specific message in the terminal
   visual_tools.prompt("Click 'Next' in the RVizVisualToolsGui or N if you have the 'Key Tool' selected");
+
 
 
 

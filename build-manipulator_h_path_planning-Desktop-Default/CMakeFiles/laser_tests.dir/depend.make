@@ -96,6 +96,9 @@ CMakeFiles/laser_tests.dir/src/laser_tests.cpp.o: /opt/ros/kinetic/include/movei
 CMakeFiles/laser_tests.dir/src/laser_tests.cpp.o: /opt/ros/kinetic/include/moveit_msgs/Constraints.h
 CMakeFiles/laser_tests.dir/src/laser_tests.cpp.o: /opt/ros/kinetic/include/moveit_msgs/DisplayRobotState.h
 CMakeFiles/laser_tests.dir/src/laser_tests.cpp.o: /opt/ros/kinetic/include/moveit_msgs/DisplayTrajectory.h
+CMakeFiles/laser_tests.dir/src/laser_tests.cpp.o: /opt/ros/kinetic/include/moveit_msgs/GetPlanningScene.h
+CMakeFiles/laser_tests.dir/src/laser_tests.cpp.o: /opt/ros/kinetic/include/moveit_msgs/GetPlanningSceneRequest.h
+CMakeFiles/laser_tests.dir/src/laser_tests.cpp.o: /opt/ros/kinetic/include/moveit_msgs/GetPlanningSceneResponse.h
 CMakeFiles/laser_tests.dir/src/laser_tests.cpp.o: /opt/ros/kinetic/include/moveit_msgs/Grasp.h
 CMakeFiles/laser_tests.dir/src/laser_tests.cpp.o: /opt/ros/kinetic/include/moveit_msgs/GripperTranslation.h
 CMakeFiles/laser_tests.dir/src/laser_tests.cpp.o: /opt/ros/kinetic/include/moveit_msgs/JointConstraint.h

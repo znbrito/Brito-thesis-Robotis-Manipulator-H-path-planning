@@ -6,7 +6,7 @@ Panels:
       Expanded:
         - /Global Options1
       Splitter Ratio: 0.742560029
-    Tree Height: 172
+    Tree Height: 353
   - Class: rviz/Help
     Name: Help
   - Class: rviz/Views
@@ -333,7 +333,11 @@ Visualization Manager:
       Marker Topic: /rviz_visual_tools
       Name: MarkerArray
       Namespaces:
-        {}
+        Cylinder: true
+        Sphere: true
+        Text: true
+        goal: true
+        start: true
       Queue Size: 100
       Value: true
   Enabled: true
@@ -368,10 +372,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Pitch: 0.359797418
+      Pitch: 0.299797475
       Target Frame: base_link
       Value: XYOrbit (rviz)
-      Yaw: 4.94362354
+      Yaw: 6.17864418
     Saved: ~
 Window Geometry:
   Displays:

@@ -2,6 +2,25 @@
 Changelog for package brito_thesis
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.7.0 (2017-04-05 @ 6:42 PM)
+-----------
+
+* Altered the "laser_tests.cpp" file so that now it is possible to perform path planning to a point in the world whom was previously identified as a collision object by the laser and was mapped in the octomap. To do this, I update the AllowedCollisionMatrix of MoveIt! so that it allows collisions between a "fictitious" cube and all parts of the manipulator. This makes it possible open a gap in the octomap, with this cube is close to its limits. To show that this behaviour alls the planner to plan into a position that was previously obstructed with the octomap, I tried to plan to a point inside of a tree before and after I use this "fictitious" cube to tell MoveIt! to not obstruct the environment around my goal pose.
+
+* I changed the "resolution" parameter of my "octomap_server" node in order to map the tree with less gaps. Resolution value was "0.05" and now is "0.02".
+
+* Also changed the goal point to one that is easier to reach while mapping a smaller part of the tree.
+
+* The tree is now spawned once again in the "husky_laser_tests.launch" file.
+
+* In order to test the code, run the following in a terminal:
+ - FIRST WINDOW: roslaunch husky_gazebo husky_laser_tests.launch vertical_laser_enabled:=true manipulator_h_enabled:=true
+ - SECOND WINDOW: roslaunch husky_manipulator_h_moveit_config husky_manipulator_h_planning_execution.launch
+ - THIRD WINDOW: roslaunch manipulator_h_path_planning laser_tests.launch 
+
+* Start by launching all terminals and then move the robot around to map the tree till the goal point is all covered by the octomap. After that, put the robot in a valid position to reach the goal pose and click "Next" in the RViz window to complete the test.
+
+
 0.6.3 (2017-04-03 @ 8:16 PM)
 -----------
 

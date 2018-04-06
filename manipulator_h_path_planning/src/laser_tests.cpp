@@ -81,7 +81,7 @@ int main(int argc, char **argv)
   target_pose1.orientation.z = aux.getZ();
 
   target_pose1.position.x = 0;
-  target_pose1.position.y = 0.65;
+  target_pose1.position.y = 0.6;
   target_pose1.position.z = 0.7;
   move_group.setPoseTarget(target_pose1);
 
@@ -265,11 +265,28 @@ int main(int argc, char **argv)
   //}
 
 
+  // Wait for the user click on the RVizVisualToolsGui or N if he has the 'Key Tool' selected. Also print a specific message in the terminal
+  visual_tools.prompt("Click 'Next' in the RVizVisualToolsGui or N if you have the 'Key Tool' selected");
 
 
-  // After path planning, print the goal position
-  visual_tools.deleteAllMarkers();
-  visual_tools.publishAxisLabeled(target_pose1, "goal");
+
+
+  // Create a client that will call the gazebo service to delete the oak tree
+  ros::ServiceClient gazebo_delete_model = node_handle.serviceClient<gazebo_msgs::DeleteModel>("/gazebo/delete_model");
+
+  // Remove the object from Gazebo
+  gazebo_msgs::DeleteModel model;
+  model.request.model_name = "oak_tree";
+
+  // Call the service to delete the object
+  if (gazebo_delete_model.call(model))
+  {
+    ROS_INFO("Success, object deleted");
+  }
+  else
+  {
+    ROS_ERROR("Failed to call service");
+  }
 
   // Wait for the user click on the RVizVisualToolsGui or N if he has the 'Key Tool' selected. Also print a specific message in the terminal
   visual_tools.prompt("Click 'Next' in the RVizVisualToolsGui or N if you have the 'Key Tool' selected");

@@ -2,6 +2,20 @@
 Changelog for package brito_thesis
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.7.1 (2017-04-06 @ 2:07 PM)
+-----------
+
+* After the responde from v4hn at my post in this link: https://answers.ros.org/question/287686/problem-with-allowedcollisionmatrix-and-octomap-in-moveit/?answer=287747#post-id-287747
+I figured out how to change the padding of the cube that updates the collision octomap. You have to change the "padding_offset" parameter in the "sensors_Hokuyo_UST_10LX_pointcloud2.yaml" file inside the "husky_manipulator_h_path_planning" package, its value used to be "0.1" and now is "0.05". Note that as you decrease this value, you have to set the center point of the cube closer to the octomap tree's limits or, otherwise, the padding will be so small that it won't affect (update) the collision octomap.
+
+* Changed the "laser_tests.cpp" file so that now the oak tree is automatically eliminated during the script. Also changed the point where the cube is "spawned" to a spot that is closer to the collision octomap limits, so that I can decrease its padding and make a smaller gap in the octomap, which will not negatively influence much the remaining environment.
+
+* In order to test the code, run the following in a terminal:
+ - FIRST WINDOW: roslaunch husky_gazebo husky_laser_tests.launch vertical_laser_enabled:=true manipulator_h_enabled:=true
+ - SECOND WINDOW: roslaunch husky_manipulator_h_moveit_config husky_manipulator_h_planning_execution.launch
+ - THIRD WINDOW: roslaunch manipulator_h_path_planning laser_tests.launch 
+
+
 0.7.0 (2017-04-05 @ 6:42 PM)
 -----------
 

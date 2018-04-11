@@ -2,6 +2,12 @@
 Changelog for package brito_thesis
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.7.3 (2017-04-11 @ 4:07 PM)
+-----------
+
+* The color of the box and the cylinder where the Manipulator-H is mounted are now visible in RViz (they used to be red). It seems that, under the "gazebo" tag are only defined the colors of the models that will be visualized in Gazebo. For a color to be visible in RViz (and maybe other simulators), it is necessary to define a "color" tag inside a "material" tag inside the "visual" tag inside the "link" tag. 
+
+
 0.7.2 (2017-04-11 @ 3:15 PM)
 -----------
 

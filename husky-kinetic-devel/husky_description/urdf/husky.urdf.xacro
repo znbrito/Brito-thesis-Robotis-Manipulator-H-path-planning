@@ -214,6 +214,9 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         <geometry>
           <box size="0.225 0.42 0.202" />
         </geometry>
+        <material name="Gazebo/Orange_color">
+          <color rgba="1 0.5088 0.0468 1.0"/>
+        </material>
       </visual> 
     </link>
     <gazebo reference="box">
@@ -248,6 +251,9 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         <geometry>
           <cylinder length="0.0075" radius="0.08"/> <!-- Measurements not 100% accurate -->
         </geometry>
+        <material name="Gazebo/Blue_color">
+          <color rgba="0 0 1 1.0"/>
+        </material>
       </visual> 
     </link>
     <gazebo reference="cylinder">

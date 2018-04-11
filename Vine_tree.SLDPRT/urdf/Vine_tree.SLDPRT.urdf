@@ -1,0 +1,43 @@
+<robot
+  name="Vine_tree.SLDPRT">
+  <link
+    name="Vine_tree.SLDPRT">
+    <inertial>
+      <origin
+        xyz="0.0093635 -0.000182729999999959 0.67062"
+        rpy="0 0 0" />
+      <mass
+        value="4.5863" />
+      <inertia
+        ixx="0.235213698453735"
+        ixy="7.59868965808503E-06"
+        ixz="0.0112948675025049"
+        iyy="0.519665013279866"
+        iyz="-5.42636426052345E-05"
+        izz="0.285135944466359" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="1.5707963267949 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Vine_tree.SLDPRT/meshes/visual/vine_tree.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="1.5707963267949 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Vine_tree.SLDPRT/meshes/collision/vine_tree.stl" />
+      </geometry>
+    </collision>
+  </link>
+</robot>

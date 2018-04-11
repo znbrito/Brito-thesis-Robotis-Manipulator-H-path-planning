@@ -2,6 +2,31 @@
 Changelog for package brito_thesis
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.7.2 (2017-04-11 @ 3:15 PM)
+-----------
+
+* Created a new simulation where a fake vine model is used to simulate the operations of the system in a real environment. The Husky robot is now supposed to follow a path parallel to the vine while reaching the desired cutting points.
+
+* The fake vine tree used comes from the package "Vine_tree.SLDPRT" which is the result of a conversion of a modeled vine tree in SolidWorks by the "SolidWorks2URDF_Exporter" program, which converts SolidWorks models in URDF models. Only tested in this case but worked very well! This plugin only gives .stl files and an urdf file, which means no visual files (COLLADA, .dae). To get the visual file I installed the Simlab Soft Collada Exporter for SolidWorks who is able to export COLLADA models from objects. This models can only have normal color, not appearances.
+
+* Created a new launch file where the fake vine model is launched, the "husky_fake_vine_tree_tests.launch" in the "husky_gazebo_package". In this file I changed the octomap tree resolution that is generated from the laser measures, in order to have more points when mapping environment objects. Previous resolution used to be "0.02" and now is "0.002".
+
+* Also changed the octomap resolution of the octomap created by MoveIt! using the octomap provided by the octomap server. Previous resolution was "0.025" and now is "0.015".
+
+* NOTE THAT THIS 2 RESOLUTIONS ARE DEPENDENT OF THE AMOUNT OF OBJECTS TO MAP!!!
+ - The most important resolution is the octomap server resolution because that is what takes more points to be processed. The resolution of the octomap used by MoveIt! only makes the "cubes" from the octomap bigger or smaller and the computational cost of that is not to high when compared to the previous operation.
+
+* The "padding_offset" is now smaller. Older value was "0.05" and now is "0.02".
+
+* NOTE FOR THE SIMULATION:
+ - Click "z" in order to reduce Husky's velocity, so that it moves slower and makes it easier to compute the octomap. With higher speed there will be empty gaps of point there weren't processed.
+
+* In order to test the code, run the following in a terminal:
+ - FIRST WINDOW: roslaunch husky_gazebo husky_fake_vine_tree_tests.launch vertical_laser_enabled:=true manipulator_h_enabled:=true
+ - SECOND WINDOW: roslaunch husky_manipulator_h_moveit_config husky_manipulator_h_planning_execution.launch
+ - THIRD WINDOW: roslaunch manipulator_h_path_planning fake_vine_tree_tests.launch 
+
+
 0.7.1 (2017-04-06 @ 2:07 PM)
 -----------
 

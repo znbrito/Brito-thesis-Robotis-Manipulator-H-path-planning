@@ -65,3 +65,6 @@ target_link_libraries(oak_tree_tests ${catkin_LIBRARIES} ${Boost_LIBRARIES})
 
 add_executable(laser_tests src/laser_tests.cpp)
 target_link_libraries(laser_tests ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+
+add_executable(fake_vine_tree_tests src/fake_vine_tree_tests.cpp)
+target_link_libraries(fake_vine_tree_tests ${catkin_LIBRARIES} ${Boost_LIBRARIES})

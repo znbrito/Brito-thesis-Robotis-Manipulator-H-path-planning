@@ -52,8 +52,8 @@
     <param name="base_frame_id" type="string" value="base_link" />
  </node> -->
 
-  <!-- Spawn an oak tree in (x,y,z)=(0,1,0) -->
-  <node name="tree_node" pkg="gazebo_ros" type="spawn_model" args="-file /home/josebrito/catkin_ws/src/brito_thesis/manipulator_h_path_planning/meshes/oak_tree/model.sdf -sdf -model oak_tree -y 1"/>
+  <!-- Spawn an vine tree in (x,y,z)=(0,0.7,0) with roll = pi/2 -->
+  <node name="tree_node" pkg="gazebo_ros" type="spawn_model" args="-file /home/josebrito/catkin_ws/src/brito_thesis/Vine_tree.SLDPRT/urdf/Vine_tree.SLDPRT.urdf -urdf -model vine_tree -x 1.1 -y 0.6"/>
 
   <!-- Load node that converts laser distances into point clouds -->
   <node name="laser_to_pcl_node" pkg="laser_to_pcl" type="laser_to_pcl_node" output="screen">
@@ -63,7 +63,7 @@
   <!-- Load node that converts point clouds into a map -->
   <node pkg="octomap_server" type="octomap_server_node" name="octomap_server">
     <param name="frame_id" type="string" value="odom" />
-    <param name="resolution" value="0.02" />
+    <param name="resolution" value="0.002" /> <!-- Originally was "0.05" -->
     <param name="base_frame_id" type="string" value="odom" /> <!-- Originally was "base_footprint" -->
     <param name="height_map" type="bool" value="true" />
     <param name="sensor_model/max_range" type="double" value="10.0" />

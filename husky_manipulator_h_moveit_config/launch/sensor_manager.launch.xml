@@ -8,7 +8,7 @@
 
   <!-- Params for the octomap monitor -->
   <param name="octomap_frame" type="string" value="$(arg frame)" />
-  <param name="octomap_resolution" type="double" value="0.025" />
+  <param name="octomap_resolution" type="double" value="0.015" /> <!-- Originally was "0.025" -->
   <param name="max_range" type="double" value="5.0" />
 
   <!-- Load the robot specific sensor manager: THIS FILE IS EMPTY BUT NEEDED -->

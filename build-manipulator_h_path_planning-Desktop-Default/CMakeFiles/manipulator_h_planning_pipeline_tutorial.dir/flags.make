@@ -6,5 +6,5 @@ CXX_FLAGS =   -std=c++11
 
 CXX_DEFINES = -DROSCONSOLE_BACKEND_LOG4CXX -DROS_PACKAGE_NAME=\"manipulator_h_path_planning\"
 
-CXX_INCLUDES = -isystem /usr/include/eigen3 -I/opt/ros/kinetic/include -I/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp 
+CXX_INCLUDES = -isystem /usr/include/eigen3 -I/home/josebrito/catkin_ws/devel/include -I/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/planning_interface/py_bindings_tools/include -I/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/planning_interface/common_planning_interface_objects/include -I/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/planning_interface/planning_scene_interface/include -I/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/planning_interface/move_group_interface/include -I/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/warehouse/warehouse/include -I/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/manipulation/pick_place/include -I/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/manipulation/move_group_pick_place_capability/include -I/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/move_group/include -I/opt/ros/kinetic/include -I/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp 
 

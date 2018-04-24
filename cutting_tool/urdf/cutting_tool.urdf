@@ -1,0 +1,43 @@
+<robot
+  name="cutting_tool">
+  <link
+    name="cutting_tool">
+    <inertial>
+      <origin
+        xyz="-0.12855 -0.016865 0.014856"
+        rpy="0 0 0" />
+      <mass
+        value="0.11411" />
+      <inertia
+        ixx="1.01781345886732"
+        ixy="-7.42423740694407E-05"
+        ixz="-1.82681332058121E-05"
+        iyy="1.000364001437240799"
+        iyz="-5.41258892650518E-06"
+        izz="1.000376825350110568" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="-6.12303176911189E-17 0 -1.5707963267949" />
+      <geometry>
+        <mesh
+          filename="package://cutting_tool/meshes/cutting_tool.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="-6.12303176911189E-17 0 -1.5707963267949" />
+      <geometry>
+        <mesh
+          filename="package://cutting_tool/meshes/cutting_tool.STL" />
+      </geometry>
+    </collision>
+  </link>
+</robot>

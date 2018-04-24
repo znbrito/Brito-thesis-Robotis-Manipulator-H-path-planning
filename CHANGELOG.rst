@@ -2,6 +2,38 @@
 Changelog for package brito_thesis
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.8.0 (2017-04-24 @ 7:23 PM)
+-----------
+
+* Added a cutting tool as the end effector of the Manipulator-H. To do this I used the SolidWorks plugin to Export a SolidWorks model into an URDF model and after that I manually calibrated the position of the cutting tool. However, the cutting tool isn't working very well because it doesn't rotate well when planning in RViz. 
+
+* THIS HAS TO BE IMPROVED!!!
+
+* In order to test the code, run the following in a terminal:
+ - FIRST WINDOW: roslaunch husky_gazebo husky_fake_vine_tree_tests.launch vertical_laser_enabled:=true manipulator_h_enabled:=true
+ - SECOND WINDOW: roslaunch husky_manipulator_h_moveit_config husky_manipulator_h_planning_execution.launch 
+
+
+* Also implemented MoveIt! with the real Robotis Manipulator-H by adapting the packages from the Robotis Open Manipulator. Right now it is only possible to plan in RViz and there is a problem with the 5th joint of the manipulator that has to be solved.
+
+* THIS ALSO HAS TO BE IMPROVED!!
+
+* The only packages needed from the Open Manipulator are:
+ - open_manipulator_description
+ - open_manipulator_dynamixel_ctrl
+ - open_manipulator_moveit
+ - open_manipulator_msgs
+ - open_manipulator_position_ctrl
+And they are inside the "open_manipulator" folder. I did this by commenting the parts of the code where grips where mentioned and adding the joints of the Manipulator-H.
+
+* In order to run the simulation, connect the manipulator to the PC via USB and do the following:
+ - FIRST TERMINAL:
+   $ sudo chmod a+rw /dev/ttyUSB0
+   $ roslaunch open_manipulator_dynamixel_ctrl dynamixel_controller.launch
+ - SECOND TERMINAL:
+   $ roslaunch open_manipulator_moveit open_manipulator_demo.launch
+
+
 0.7.3 (2017-04-11 @ 4:07 PM)
 -----------
 

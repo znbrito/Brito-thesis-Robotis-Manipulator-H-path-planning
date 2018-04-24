@@ -153,7 +153,7 @@ int main(int argc, char **argv)
   // and report success on execution of a trajectory.
 
   // Uncomment below line when working with a real robot (or Gazebo simulation)
-  move_group.move();
+  move_group.execute(my_plan);
 
   // Wait for the user click on the RVizVisualToolsGui or N if he has the 'Key Tool' selected. Also print a specific message in the terminal
   visual_tools.prompt("Click 'Next' in the RVizVisualToolsGui or N if you have the 'Key Tool' selected");

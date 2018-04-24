@@ -17,6 +17,15 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/usr/include/eigen3"
+  "/home/josebrito/catkin_ws/devel/include"
+  "/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/planning_interface/py_bindings_tools/include"
+  "/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/planning_interface/common_planning_interface_objects/include"
+  "/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/planning_interface/planning_scene_interface/include"
+  "/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/planning_interface/move_group_interface/include"
+  "/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/warehouse/warehouse/include"
+  "/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/manipulation/pick_place/include"
+  "/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/manipulation/move_group_pick_place_capability/include"
+  "/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/move_group/include"
   "/opt/ros/kinetic/include"
   "/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
   )

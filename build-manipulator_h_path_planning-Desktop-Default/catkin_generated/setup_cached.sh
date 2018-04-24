@@ -6,8 +6,6 @@
 
 # new environment variables
 export CMAKE_PREFIX_PATH="/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/devel:/home/josebrito/catkin_ws/devel:/opt/ros/kinetic"
-export HUSKY_DESCRIPTION=""
-export HUSKY_GAZEBO_DESCRIPTION=""
 export HUSKY_MAG_CONFIG="/home/josebrito/catkin_ws/src/brito_thesis/husky-kinetic-devel/husky_bringup/config/mag_config_default.yaml"
 export LD_LIBRARY_PATH="/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/devel/lib:/home/josebrito/catkin_ws/devel/lib:/opt/ros/kinetic/lib:/opt/ros/kinetic/lib/x86_64-linux-gnu"
 export PKG_CONFIG_PATH="/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/devel/lib/pkgconfig:/home/josebrito/catkin_ws/devel/lib/pkgconfig:/opt/ros/kinetic/lib/pkgconfig:/opt/ros/kinetic/lib/x86_64-linux-gnu/pkgconfig"

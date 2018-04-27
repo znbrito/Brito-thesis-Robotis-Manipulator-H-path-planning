@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!--<param name="robot_description" command="$(find xacro)/xacro '$(find husky_description)/urdf/husky.urdf.xacro'
+   - -inorder
+    manipulator_h_enabled:=true
+    vertical_laser_enabled:=true
+    " />-->
+
+  <!--Launch Robotis Controller -->
+  <node name="robotis_manager" pkg="robotis_controller" type="robotis_manager" output="screen">     
+    <rosparam command="load" file="$(find robotis_controller)/launch/ROBOTIS-manipulatorH.yaml" />
+    <rosparam param="joint_state_publish_rate">125</rosparam> 
+    <rosparam param="publish_joint_topic_name">"/robotis_manipulator_h/joint_states"</rosparam><!-- Was originally "/joint_states" -->
+    <rosparam param="subscribe_joint_topic_name">"/joint_states"</rosparam><!-- Originally was "/controller_joint_states" -->
+  </node>
+
+  <!-- Load the robot's joint names into the ROS parameter server -->
+  <rosparam command="load" file="$(find husky_manipulator_h_moveit_config)/config/joint_names.yaml"/>
+
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find manipulator_h_gazebo)/config/position_controller.yaml" command="load"/>
+
+
+  <!-- Load the controllers -->
+  <!--<node name="controller_spawner" pkg="dynamixel_controllers" type="controller_spawner.py" respawn="false" output="screen" ns="/robotis_manipulator_h" args="joint_state_controller main_group_controller"/>-->
+ 
+  <!--<node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/robotis_manipulator_h" args="joint_state_controller main_group_controller"/>-->
+  
+
+  <!--<include file="$(find husky_manipulator_h_moveit_config)/launch/husky_moveit_controller_manager.launch.xml"/>-->
+
+  <!-- Action server node in order to send trajectory commands to the robot -->
+  <!--<node pkg="industrial_robot_client" type="joint_trajectory_action" name="joint_trajectory_action_node">-->
+    <!-- Subscribed topics -->
+    <!--<remap from="joint_trajectory_action/goal" to="/robotis_manipulator_h/main_group_controller/follow_joint_trajectory/goal"/>
+    <remap from="joint_trajectory_action/cancel" to="/robotis_manipulator_h/main_group_controller/follow_joint_trajectory/cancel"/>
+    <remap from="feedback_states" to="/robotis_manipulator_h/main_group_controller/follow_joint_trajectory/feedback"/>-->
+    <!-- Published topcis -->
+    <!--<remap from="joint_path_command" to="/robotis_manipulator_h/main_group_controller/command"/>
+  </node>-->
+
+  <!-- Run the main MoveIt executable without trajectory execution (we do not have controllers configured by default) -->
+  <include file="$(find husky_manipulator_h_moveit_config)/launch/move_group.launch">
+    <arg name="publish_monitored_planning_scene" value="true"/>
+  </include>
+
+  <!--<node pkg="moveit_ros_move_group" type="move_group" name="move_group" output="screen">
+    <remap from="joint_states" to="robotis_manipulator_h/main_group_controller/follow_joint_trajectory"/>
+  </node>-->
+
+  <!-- Load the URDF, SRDF and other .yaml configuration files on the param server -->
+  <include file="$(find husky_manipulator_h_moveit_config)/launch/planning_context.launch">
+    <arg name="load_robot_description" value="true"/>
+  </include>
+
+  <!-- Given the published joint states, publish tf for the robot links and TF-->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen">
+    <remap from="/joint_states" to="/robotis_manipulator_h/joint_states"/>
+  </node>
+
+  <!-- Launch Robot Initializer initial the robot by seting the torque control parameter to be true-->
+  <node pkg="cat_manipulator_control" type="my_init_robot" name="init_robot" output="log"/> 
+
+  <!-- Publish joint states in the "/robotis_manipulator_h/joint_states" topic, since we now have a real robot -->
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="/use_gui" value="false"/>
+    <rosparam param="/source_list">[/robotis_manipulator_h/joint_states]</rosparam>
+  </node>
+
+
+
+  <!--<include file="$(find industrial_robot_simulator)/launch/robot_interface_simulator.launch" />-->
+
+
+  <!--<node pkg="industrial_robot_simulator" type="industrial_robot_simulator" name="industrial_robot_simulator"/> -->
+  
+  <!-- joint_trajectory_action: provides actionlib interface for high-level robot control -->
+  <!--<node pkg="industrial_robot_client" type="joint_trajectory_action" name="joint_trajectory_action_node">
+    <remap from="joint_trajectory_action/goal" to="/robotis_manipulator_h/main_group_controller/follow_joint_trajectory/goal" />
+    <remap from="joint_trajectory_action/cancel" to="/robotis_manipulator_h/main_group_controller/follow_joint_trajectory/cancel" />
+    <remap from="joint_trajectory_action/feedback" to="/robotis_manipulator_h/main_group_controller/follow_joint_trajectory/feedback" />
+    <remap from="joint_trajectory_action/status" to="/robotis_manipulator_h/main_group_controller/follow_joint_trajectory/status" />
+    <remap from="joint_trajectory_action/result" to="/robotis_manipulator_h/main_group_controller/follow_joint_trajectory/result" />
+  </node>-->
+
+
+  <rosparam command="load" file="$(find manipulator_h_path_planning)/config/joint_trajectory_action_config.yaml"/>
+  <node name="joint_trajectory_action_node" pkg="joint_trajectory_action" type="joint_trajectory_action">
+    <remap from="joint_trajectory_action/goal" to="/robotis_manipulator_h/main_group_controller/follow_joint_trajectory/goal" />
+    <remap from="joint_trajectory_action/cancel" to="/robotis_manipulator_h/main_group_controller/follow_joint_trajectory/cancel" />
+    <remap from="joint_trajectory_action/feedback" to="/robotis_manipulator_h/main_group_controller/follow_joint_trajectory/feedback" />
+    <remap from="joint_trajectory_action/status" to="/robotis_manipulator_h/main_group_controller/follow_joint_trajectory/status" />
+    <remap from="joint_trajectory_action/result" to="/robotis_manipulator_h/main_group_controller/follow_joint_trajectory/result" /> 
+  </node>
+
+  <rosparam command="load" file="$(find manipulator_h_path_planning)/config/JointTrajectoryActionController.yaml"/>
+  <node name="arm_controller_spawner" pkg="controller_manager" type="spawner" args="arm_controller"/>
+  
+
+  <!-- Run Rviz and load the default config to see the state of the move_group node -->
+  <!--<include file="$(find husky_manipulator_h_moveit_config)/launch/moveit_rviz.launch">
+    <arg name="config" value="true"/>
+  </include>-->
+
+  <!-- Load the sensor configuration for real time environment mapping, making it possible for the planner to avoid environment obstacles -->
+  <!--<arg name="frame" value="odom"/>
+  <include file="$(find husky_manipulator_h_moveit_config)/launch/sensor_manager.launch.xml"> 
+    <arg name="frame" value="$(arg frame)"/>
+  </include>-->
+	
+</launch>

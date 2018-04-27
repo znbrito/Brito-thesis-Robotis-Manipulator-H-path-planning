@@ -9,9 +9,8 @@ Panels:
         - /MotionPlanning1/Scene Geometry1
         - /MotionPlanning1/Scene Robot1
         - /MotionPlanning1/Planning Request1
-        - /MotionPlanning1/Planned Path1/Links1
       Splitter Ratio: 0.742560029
-    Tree Height: 416
+    Tree Height: 437
   - Class: rviz/Help
     Name: Help
   - Class: rviz/Views
@@ -359,25 +358,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/XYOrbit
-      Distance: 1.9392556
+      Distance: 2.43260241
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.628930271
-        Y: -0.401212811
-        Z: 9.3877361e-07
+        X: -0.496690899
+        Y: -0.0666320324
+        Z: 7.00355031e-07
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.0500000007
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Pitch: 0.369796991
+      Pitch: 0.359797001
       Target Frame: base_link
       Value: XYOrbit (rviz)
-      Yaw: 1.31858242
+      Yaw: 0.918582737
     Saved: ~
 Window Geometry:
   Displays:

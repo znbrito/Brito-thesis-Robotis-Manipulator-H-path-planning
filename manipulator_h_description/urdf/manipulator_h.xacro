@@ -350,11 +350,12 @@
   <!-- Cutting tool loaded when Manipulator-H is on top of the Husky robot -->
   <xacro:if value="$(arg manipulator_h_enabled)">
 
+    <!-- Joint 6 -->
     <joint name="joint6" type="revolute">
-      <origin xyz="0.32 -0.014 -0.021" rpy="0 0 0"/> 
-      <axis xyz="1 0 0"/>
       <parent link="link6"/>
-      <child link="cutting_tool"/>
+      <child link="end_link"/>
+      <origin xyz="0.12300 -0.04500 0.00000" rpy="0 0 0"/>
+      <axis xyz="1 0 0"/>
       <limit velocity="6.5" effort="1000" lower="${-pi*0.5}" upper="${pi*0.5}" />
       <dynamics damping="0.7"/>
     </joint>
@@ -369,6 +370,49 @@
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission>
+
+    <!-- end link -->
+    <link name="end_link">
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://manipulator_h_description/meshes/end_link.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://manipulator_h_description/meshes/end_link.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="grey"/>
+      </visual>
+
+      <inertial>
+        <origin xyz="0.00337 0.00000 0.00000" rpy="0 0 0"/>
+        <mass value="0.01919"/>
+        <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />
+        <!--<inertia ixx="0.00000938" ixy="0.0" ixz="0.0" iyy="0.00000338" iyz="0.0" izz="0.00000635" />-->
+      </inertial>
+    </link>
+
+    <transmission name="tran6">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="joint6">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor6">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <joint name="joint7" type="fixed">
+      <origin xyz="0.2085 0.031 -0.018" rpy="0 0 0"/> 
+      <axis xyz="1 0 0"/>
+      <parent link="end_link"/>
+      <child link="cutting_tool"/>
+    </joint>
 
     <xacro:include filename="$(find cutting_tool)/urdf/cutting_tool.urdf" />
 

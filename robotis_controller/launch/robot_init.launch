@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!--Launch Robotis Controller -->
+  <node name="robotis_manager" pkg="robotis_controller" type="robotis_manager" output="screen">     
+    <rosparam command="load" file="$(find robotis_controller)/launch/ROBOTIS-manipulatorH.yaml" />
+    <rosparam param="joint_state_publish_rate">125</rosparam> 
+    <rosparam param="publish_joint_topic_name">"/robotis/open_manipulator/present_joint_states"</rosparam><!-- Originally was "/joint_states" -->
+    <rosparam param="subscribe_joint_topic_name">"/robotis/open_manipulator/goal_joint_states"</rosparam><!-- Originally was "/controller_joint_states" -->
+  </node>
+
+  <!-- Launch Robot Initializer initial the robot by seting the torque control parameter to be true-->
+  <node pkg="cat_manipulator_control" type="my_init_robot" name="init_robot" output="log"/> 
+
+  <!-- joint_trajectory_action: provides actionlib interface for high-level robot control -->
+  <!--<node pkg="industrial_robot_client" type="joint_trajectory_action" name="joint_trajectory_action_node">
+    <remap from="joint_trajectory_action/goal" to="/robotis_manipulator_h/main_group_controller/follow_joint_trajectory/goal" />
+    <remap from="joint_trajectory_action/cancel" to="/robotis_manipulator_h/main_group_controller/follow_joint_trajectory/cancel" />
+    <remap from="joint_trajectory_action/feedback" to="/robotis_manipulator_h/main_group_controller/follow_joint_trajectory/feedback" />
+    <remap from="joint_trajectory_action/status" to="/robotis_manipulator_h/main_group_controller/follow_joint_trajectory/status" />
+    <remap from="joint_trajectory_action/result" to="/robotis_manipulator_h/main_group_controller/follow_joint_trajectory/result" />
+  </node>-->
+	
+</launch>

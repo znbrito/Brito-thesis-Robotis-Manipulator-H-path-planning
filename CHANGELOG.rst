@@ -2,6 +2,29 @@
 Changelog for package brito_thesis
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.8.1 (2017-04-27 @ 5:46 PM)
+-----------
+
+* The cutting tool was now added to the tip of the link "end_link" of the Manipulator-H and the Husky + Manipulator-H MoveIt! package has also been updated, making it possible to plan taking in account the cutting tool. Changed the "octomap_resolution" to "0.01" (previously was "0.015") because the logs are very small. Smaller resolution take too much processing time.
+
+* In order to test the code, run the following in a terminal:
+ - FIRST WINDOW: roslaunch husky_gazebo husky_fake_vine_tree_tests.launch vertical_laser_enabled:=true manipulator_h_enabled:=true
+ - SECOND WINDOW: roslaunch husky_manipulator_h_moveit_config husky_manipulator_h_planning_execution.launch 
+
+
+* The problem of the 5th joint is now solved. In fact, the 5th and 6th joint values were not being correctly read and maybe that has something to do with the fact that the Robotis Open Manipulator Chain has only 4 joints and the Robotis Manipulator-H has 6 joints.
+
+* I used Nima's packages to get a node (in fact, 2 nodes) that interface with the robot, making it possible to read and write "sensor_msgs/JointState" messages so that now I can correctly read all the joint values from the Manipulator-H and plan and execute plans using MoveIt! and getting then to work perfectly! Keep in mind that whenever a there is an error with the readings of the manipulator, it will make the MoveIt! node to not work anymore: the error code for an error in the reading is something like this -> "[ID:1] bulkread result : -3002"
+
+* THE ONLY PROBLEM NOW IS THAT I CANNOT EXECUTE PLANS WRITTEN IN CODE! In the first launch file there is commented code because I already started to overcome this problem but with no success.
+
+* In order to run the simulation, connect the manipulator to the PC via USB and do the following:
+ - FIRST TERMINAL:
+   $ roslaunch robotis_controller robot_init.launch
+ - SECOND TERMINAL:
+   $ roslaunch open_manipulator_moveit open_manipulator_demo.launch
+
+
 0.8.0 (2017-04-24 @ 7:23 PM)
 -----------
 

@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+
+  <node name="real_manipulator_h_alone_tests_node" pkg="manipulator_h_path_planning" type="real_manipulator_h_alone_tests" respawn="false" output="screen"/>
+
+</launch>

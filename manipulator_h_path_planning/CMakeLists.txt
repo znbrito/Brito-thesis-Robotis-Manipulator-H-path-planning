@@ -56,6 +56,10 @@ target_link_libraries(manipulator_h_planning_scene_ros_api_tutorial ${catkin_LIB
 add_executable(manipulator_h_planning_pipeline_tutorial src/manipulator_h_planning_pipeline_tutorial.cpp)
 target_link_libraries(manipulator_h_planning_pipeline_tutorial ${catkin_LIBRARIES})
 
+# REAL Manipulator-H
+add_executable(real_manipulator_h_alone_tests src/real_manipulator_h_alone_tests.cpp)
+target_link_libraries(real_manipulator_h_alone_tests ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+
 # Husky + Manipulator-H
 add_executable(husky_manipulator_h_move_group_interface_tutorial src/husky_manipulator_h_move_group_interface_tutorial.cpp)
 target_link_libraries(husky_manipulator_h_move_group_interface_tutorial ${catkin_LIBRARIES} ${Boost_LIBRARIES})

@@ -57,6 +57,80 @@
             <DistClean command="/usr/bin/make -f &quot;/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/Makefile&quot;  VERBOSE=1 clean" />
          </MakeCommands>
       </Target>
+      <Target title="laser_tests">
+         <Option output="/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/devel/lib/manipulator_h_path_planning/laser_tests" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/devel/lib/manipulator_h_path_planning" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add option="-DROS_PACKAGE_NAME=&quot;manipulator_h_path_planning&quot;" />
+            <Add option="-DROSCONSOLE_BACKEND_LOG4CXX" />
+            <Add directory="/home/josebrito/catkin_ws/devel/include" />
+            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/manipulation/move_group_pick_place_capability/include" />
+            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/manipulation/pick_place/include" />
+            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/move_group/include" />
+            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/planning_interface/common_planning_interface_objects/include" />
+            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/planning_interface/move_group_interface/include" />
+            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/planning_interface/planning_scene_interface/include" />
+            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/planning_interface/py_bindings_tools/include" />
+            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/warehouse/warehouse/include" />
+            <Add directory="/opt/ros/kinetic/include" />
+            <Add directory="/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp" />
+            <Add directory="/usr/include" />
+            <Add directory="/usr/include/c++/5" />
+            <Add directory="/usr/include/c++/5/backward" />
+            <Add directory="/usr/include/eigen3" />
+            <Add directory="/usr/include/x86_64-linux-gnu" />
+            <Add directory="/usr/include/x86_64-linux-gnu/c++/5" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed" />
+            <Add directory="/usr/local/include" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/Makefile&quot;  VERBOSE=1 laser_tests" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="laser_tests/fast">
+         <Option output="/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/devel/lib/manipulator_h_path_planning/laser_tests" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/devel/lib/manipulator_h_path_planning" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add option="-DROS_PACKAGE_NAME=&quot;manipulator_h_path_planning&quot;" />
+            <Add option="-DROSCONSOLE_BACKEND_LOG4CXX" />
+            <Add directory="/home/josebrito/catkin_ws/devel/include" />
+            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/manipulation/move_group_pick_place_capability/include" />
+            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/manipulation/pick_place/include" />
+            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/move_group/include" />
+            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/planning_interface/common_planning_interface_objects/include" />
+            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/planning_interface/move_group_interface/include" />
+            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/planning_interface/planning_scene_interface/include" />
+            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/planning_interface/py_bindings_tools/include" />
+            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/warehouse/warehouse/include" />
+            <Add directory="/opt/ros/kinetic/include" />
+            <Add directory="/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp" />
+            <Add directory="/usr/include" />
+            <Add directory="/usr/include/c++/5" />
+            <Add directory="/usr/include/c++/5/backward" />
+            <Add directory="/usr/include/eigen3" />
+            <Add directory="/usr/include/x86_64-linux-gnu" />
+            <Add directory="/usr/include/x86_64-linux-gnu/c++/5" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed" />
+            <Add directory="/usr/local/include" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/Makefile&quot;  VERBOSE=1 laser_tests/fast" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
       <Target title="_catkin_empty_exported_target">
          <Option working_dir="/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default" />
          <Option type="4" />
@@ -929,6 +1003,80 @@
             <DistClean command="/usr/bin/make -f &quot;/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/Makefile&quot;  VERBOSE=1 clean" />
          </MakeCommands>
       </Target>
+      <Target title="real_manipulator_h_alone_tests">
+         <Option output="/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/devel/lib/manipulator_h_path_planning/real_manipulator_h_alone_tests" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/devel/lib/manipulator_h_path_planning" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add option="-DROS_PACKAGE_NAME=&quot;manipulator_h_path_planning&quot;" />
+            <Add option="-DROSCONSOLE_BACKEND_LOG4CXX" />
+            <Add directory="/home/josebrito/catkin_ws/devel/include" />
+            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/manipulation/move_group_pick_place_capability/include" />
+            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/manipulation/pick_place/include" />
+            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/move_group/include" />
+            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/planning_interface/common_planning_interface_objects/include" />
+            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/planning_interface/move_group_interface/include" />
+            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/planning_interface/planning_scene_interface/include" />
+            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/planning_interface/py_bindings_tools/include" />
+            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/warehouse/warehouse/include" />
+            <Add directory="/opt/ros/kinetic/include" />
+            <Add directory="/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp" />
+            <Add directory="/usr/include" />
+            <Add directory="/usr/include/c++/5" />
+            <Add directory="/usr/include/c++/5/backward" />
+            <Add directory="/usr/include/eigen3" />
+            <Add directory="/usr/include/x86_64-linux-gnu" />
+            <Add directory="/usr/include/x86_64-linux-gnu/c++/5" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed" />
+            <Add directory="/usr/local/include" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/Makefile&quot;  VERBOSE=1 real_manipulator_h_alone_tests" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="real_manipulator_h_alone_tests/fast">
+         <Option output="/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/devel/lib/manipulator_h_path_planning/real_manipulator_h_alone_tests" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/devel/lib/manipulator_h_path_planning" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add option="-DROS_PACKAGE_NAME=&quot;manipulator_h_path_planning&quot;" />
+            <Add option="-DROSCONSOLE_BACKEND_LOG4CXX" />
+            <Add directory="/home/josebrito/catkin_ws/devel/include" />
+            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/manipulation/move_group_pick_place_capability/include" />
+            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/manipulation/pick_place/include" />
+            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/move_group/include" />
+            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/planning_interface/common_planning_interface_objects/include" />
+            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/planning_interface/move_group_interface/include" />
+            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/planning_interface/planning_scene_interface/include" />
+            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/planning_interface/py_bindings_tools/include" />
+            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/warehouse/warehouse/include" />
+            <Add directory="/opt/ros/kinetic/include" />
+            <Add directory="/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp" />
+            <Add directory="/usr/include" />
+            <Add directory="/usr/include/c++/5" />
+            <Add directory="/usr/include/c++/5/backward" />
+            <Add directory="/usr/include/eigen3" />
+            <Add directory="/usr/include/x86_64-linux-gnu" />
+            <Add directory="/usr/include/x86_64-linux-gnu/c++/5" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed" />
+            <Add directory="/usr/local/include" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/Makefile&quot;  VERBOSE=1 real_manipulator_h_alone_tests/fast" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
       <Target title="octomap_msgs_generate_messages_eus">
          <Option working_dir="/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default" />
          <Option type="4" />
@@ -1391,80 +1539,6 @@
             <DistClean command="/usr/bin/make -f &quot;/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/Makefile&quot;  VERBOSE=1 clean" />
          </MakeCommands>
       </Target>
-      <Target title="laser_tests">
-         <Option output="/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/devel/lib/manipulator_h_path_planning/laser_tests" prefix_auto="0" extension_auto="0" />
-         <Option working_dir="/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/devel/lib/manipulator_h_path_planning" />
-         <Option object_output="./" />
-         <Option type="1" />
-         <Option compiler="gcc" />
-         <Compiler>
-            <Add option="-DROS_PACKAGE_NAME=&quot;manipulator_h_path_planning&quot;" />
-            <Add option="-DROSCONSOLE_BACKEND_LOG4CXX" />
-            <Add directory="/home/josebrito/catkin_ws/devel/include" />
-            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/manipulation/move_group_pick_place_capability/include" />
-            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/manipulation/pick_place/include" />
-            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/move_group/include" />
-            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/planning_interface/common_planning_interface_objects/include" />
-            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/planning_interface/move_group_interface/include" />
-            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/planning_interface/planning_scene_interface/include" />
-            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/planning_interface/py_bindings_tools/include" />
-            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/warehouse/warehouse/include" />
-            <Add directory="/opt/ros/kinetic/include" />
-            <Add directory="/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp" />
-            <Add directory="/usr/include" />
-            <Add directory="/usr/include/c++/5" />
-            <Add directory="/usr/include/c++/5/backward" />
-            <Add directory="/usr/include/eigen3" />
-            <Add directory="/usr/include/x86_64-linux-gnu" />
-            <Add directory="/usr/include/x86_64-linux-gnu/c++/5" />
-            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include" />
-            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed" />
-            <Add directory="/usr/local/include" />
-         </Compiler>
-         <MakeCommands>
-            <Build command="/usr/bin/make -f &quot;/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/Makefile&quot;  VERBOSE=1 laser_tests" />
-            <CompileFile command="/usr/bin/make -f &quot;/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
-            <Clean command="/usr/bin/make -f &quot;/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/Makefile&quot;  VERBOSE=1 clean" />
-            <DistClean command="/usr/bin/make -f &quot;/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/Makefile&quot;  VERBOSE=1 clean" />
-         </MakeCommands>
-      </Target>
-      <Target title="laser_tests/fast">
-         <Option output="/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/devel/lib/manipulator_h_path_planning/laser_tests" prefix_auto="0" extension_auto="0" />
-         <Option working_dir="/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/devel/lib/manipulator_h_path_planning" />
-         <Option object_output="./" />
-         <Option type="1" />
-         <Option compiler="gcc" />
-         <Compiler>
-            <Add option="-DROS_PACKAGE_NAME=&quot;manipulator_h_path_planning&quot;" />
-            <Add option="-DROSCONSOLE_BACKEND_LOG4CXX" />
-            <Add directory="/home/josebrito/catkin_ws/devel/include" />
-            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/manipulation/move_group_pick_place_capability/include" />
-            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/manipulation/pick_place/include" />
-            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/move_group/include" />
-            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/planning_interface/common_planning_interface_objects/include" />
-            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/planning_interface/move_group_interface/include" />
-            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/planning_interface/planning_scene_interface/include" />
-            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/planning_interface/py_bindings_tools/include" />
-            <Add directory="/home/josebrito/catkin_ws/src/moveit-kinetic-devel/moveit_ros/warehouse/warehouse/include" />
-            <Add directory="/opt/ros/kinetic/include" />
-            <Add directory="/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp" />
-            <Add directory="/usr/include" />
-            <Add directory="/usr/include/c++/5" />
-            <Add directory="/usr/include/c++/5/backward" />
-            <Add directory="/usr/include/eigen3" />
-            <Add directory="/usr/include/x86_64-linux-gnu" />
-            <Add directory="/usr/include/x86_64-linux-gnu/c++/5" />
-            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include" />
-            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed" />
-            <Add directory="/usr/local/include" />
-         </Compiler>
-         <MakeCommands>
-            <Build command="/usr/bin/make -f &quot;/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/Makefile&quot;  VERBOSE=1 laser_tests/fast" />
-            <CompileFile command="/usr/bin/make -f &quot;/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
-            <Clean command="/usr/bin/make -f &quot;/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/Makefile&quot;  VERBOSE=1 clean" />
-            <DistClean command="/usr/bin/make -f &quot;/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default/Makefile&quot;  VERBOSE=1 clean" />
-         </MakeCommands>
-      </Target>
       <Target title="tf2_msgs_generate_messages_nodejs">
          <Option working_dir="/home/josebrito/catkin_ws/src/brito_thesis/build-manipulator_h_path_planning-Desktop-Default" />
          <Option type="4" />
@@ -1876,6 +1950,9 @@
       </Unit>
       <Unit filename="/home/josebrito/catkin_ws/src/brito_thesis/manipulator_h_path_planning/src/oak_tree_tests.cpp">
          <Option target="oak_tree_tests"/>
+      </Unit>
+      <Unit filename="/home/josebrito/catkin_ws/src/brito_thesis/manipulator_h_path_planning/src/real_manipulator_h_alone_tests.cpp">
+         <Option target="real_manipulator_h_alone_tests"/>
       </Unit>
       <Unit filename="/usr/src/gmock/src/gmock-all.cc">
          <Option target="gmock"/>

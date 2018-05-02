@@ -114,7 +114,7 @@ int main(int argc, char **argv)
   target_pose1.orientation.y = aux.getY();
   target_pose1.orientation.z = aux.getZ();
 
-  target_pose1.position.x = 0.6;
+  target_pose1.position.x = 0.2;
   target_pose1.position.y = 0;
   target_pose1.position.z = 0.2;
   move_group.setPoseTarget(target_pose1);
@@ -136,7 +136,7 @@ int main(int argc, char **argv)
   ROS_INFO_NAMED("tutorial", "Visualizing plan 1 as trajectory line");
   visual_tools.publishAxisLabeled(target_pose1, "pose1");
   visual_tools.publishText(text_pose, "Pose goal planning", rvt::WHITE, rvt::XLARGE);
-  visual_tools.publishTrajectoryLine(my_plan.trajectory_, joint_model_group->getLinkModel("end_link"), joint_model_group, rvt::LIME_GREEN);
+  //visual_tools.publishTrajectoryLine(my_plan.trajectory_, joint_model_group->getLinkModel("end_link"), joint_model_group, rvt::LIME_GREEN);
   visual_tools.trigger();
 
 
@@ -153,7 +153,9 @@ int main(int argc, char **argv)
   // and report success on execution of a trajectory.
 
   // Uncomment below line when working with a real robot (or Gazebo simulation)
-  move_group.execute(my_plan);
+  //move_group.execute(my_plan);
+  move_group.move();
+
   // Wait for the user click on the RVizVisualToolsGui or N if he has the 'Key Tool' selected. Also print a specific message in the terminal
   visual_tools.prompt("Click 'Next' in the RVizVisualToolsGui or N if you have the 'Key Tool' selected");
 
@@ -183,11 +185,12 @@ int main(int argc, char **argv)
   // Visualize the plan in Rviz
   visual_tools.deleteAllMarkers();
   visual_tools.publishText(text_pose, "Joint Space goal planning", rvt::WHITE, rvt::XLARGE);
-  visual_tools.publishTrajectoryLine(my_plan.trajectory_, joint_model_group->getLinkModel("end_link"), joint_model_group, rvt::GREEN);
+  //visual_tools.publishTrajectoryLine(my_plan.trajectory_, joint_model_group->getLinkModel("end_link"), joint_model_group, rvt::GREEN);
   visual_tools.trigger();
 
   // Actually move the robot
-  move_group.execute(my_plan);
+  //move_group.execute(my_plan);
+  move_group.move();
   // Wait for the user click on the RVizVisualToolsGui or N if he has the 'Key Tool' selected. Also print a specific message in the terminal
   visual_tools.prompt("Click 'Next' in the RVizVisualToolsGui or N if you have the 'Key Tool' selected");
 

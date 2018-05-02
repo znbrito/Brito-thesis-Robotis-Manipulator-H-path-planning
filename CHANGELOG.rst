@@ -2,6 +2,20 @@
 Changelog for package brito_thesis
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.8.1 (2017-05-2 @ 2:32 PM)
+-----------
+
+* Plans can now be executed via code but only using the "move()" function, which means that I can only "plan and execute" at the same time and not "plan" and then "execute" the plan after. I don't know why this is happening! This stand for both the MoveIt! GUI in RViz and the coded trajectories.
+
+* In order to run the simulation, connect the manipulator to the PC via USB and do the following:
+ - FIRST TERMINAL:
+   $ roslaunch robotis_controller robot_init.launch
+ - SECOND TERMINAL:
+   $ roslaunch open_manipulator_moveit open_manipulator_demo.launch
+ - THIRD TERMINAL:
+   $ roslaunch manipulator_h_path_planning real_manipulator_h_alone_tests.launch
+
+
 0.8.1 (2017-04-27 @ 5:46 PM)
 -----------
 
